@@ -1,0 +1,2 @@
+class CheckPointComment < ApplicationRecord
+end

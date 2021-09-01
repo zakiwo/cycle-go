@@ -1,0 +1,2 @@
+class RoadFavorite < ApplicationRecord
+end

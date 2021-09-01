@@ -1,0 +1,2 @@
+class RoadComment < ApplicationRecord
+end
