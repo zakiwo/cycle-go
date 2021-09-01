@@ -1,0 +1,50 @@
+<h2>新規登録</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
+    <table class="customer_info customer_form">
+      <thead>
+        <th></th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>名前</td>
+          <td><%= f.label :first_name, "(姓)", class: "customer_name" %> <%= f.text_field :first_name, autofocus: true, :placeholder =>"難波" %></td>
+          <td><%= f.label :last_name, "(名)", class: "customer_name" %> <%= f.text_field :last_name, :placeholder =>"太郎" %></td>
+        </tr>
+
+        <tr>
+          <td><%= f.label :nick_name, "ニックネーム" %></td>
+          <td colspan="2"><%= f.text_field :nick_name %></td>
+        </tr>
+
+        <tr>
+          <td><%= f.label :introduction, "自己紹介" %></td>
+          <td colspan="2"><%= f.text_area :introduction %></td>
+        </tr>
+
+        <tr>
+          <td><%= f.label :email, "メールアドレス" %></td>
+          <td colspan="2"><%= f.email_field :email, autocomplete: "email" %></td>
+        </tr>
+
+        <tr>
+          <td><%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %></td>
+          <td colspan="2"><%= f.password_field :password, autocomplete: "new-password" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :password_confirmation, "パスワード(確認用)" %></td>
+          <td colspan="2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="2"><%= f.submit "新規登録", class: "btn btn-success" %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+
+<h2 class="section-ttl">既に登録済みの方</h2>
+  <p><%= link_to "こちら", new_user_session_path, class: "underline" %>からログインしてください。</p>
