@@ -1,0 +1,63 @@
+<div class="row">
+  <h2 class="m-5 bg-ligth">新規サイクリングロード登録</h2>
+</div>
+
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <%=form_with model:@road, url:roads_path, method: :post, local:true do |f| %>
+      <tr>
+        <th>ロード名</th>
+        <td><%= f.text_field :name,class:"road_name",size:40 %></td>
+      </tr>
+
+      <tr>
+        <th>説明</th>
+        <td><%= f.text_area :introduction, class:"road-intro", size: "39x3" %></td>
+      </tr>
+
+      <tr>
+        <th>スタート地点の緯度</th>
+        <td><%= f.text_field :start_latitude,class:"s-latitude" ,size:40 %></td>
+      </tr>
+
+      <tr>
+        <th>スタート地点の経度</th>
+        <td><%= f.text_field :start_longitude,class:"s-longitude" ,size:40 %></td>
+      </tr>
+
+      <tr>
+        <th>ゴール地点の緯度</th>
+        <td><%= f.text_field :start_latitude,class:"g-latitude" ,size:40 %></td>
+      </tr>
+
+      <tr>
+        <th>ゴール地点の経度</th>
+        <td><%= f.text_field :start_longitude,class:"g-longitude" ,size:40 %></td>
+      </tr>
+
+      <tr>
+        <th>総距離</th>
+        <td><%= f.text_field :distance,class:"distance" ,size:40 %> (km)</td>
+      </tr>
+
+      <tr>
+        <th>獲得標高</th>
+        <td><%= f.text_field :evalation_gain,class:"evalation-gain" ,size:40 %> (m)</td>
+      </tr>
+
+      <tr>
+        <th>難易度</th>
+        <td>
+          <%= f.radio_button :difficulty, 0 %>初級 
+          <%= f.radio_button :difficulty, 1 %>中級 
+          <%= f.radio_button :difficulty, 2 %>上級
+        </td>
+      </tr>
+      <tr>
+        <th><td><%= f.submit '新規登録',class:"btn btn-success" %></td></th>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
