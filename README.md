@@ -20,7 +20,7 @@
 
 ## 設計書
 - ER図
-[Uploading ポートフォリオER図.png…]()
+
 - テーブル定義書
 https://docs.google.com/spreadsheets/d/1kOH9lLo1snCBS8blrWnLrVnDXgM4C-prW1M9Q6rXqso/edit?usp=sharing
 - アプリケーション詳細設計書 
