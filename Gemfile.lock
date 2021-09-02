@@ -91,6 +91,8 @@ GEM
     devise-i18n (1.10.0)
       devise (>= 4.8.0)
     diff-lcs (1.4.4)
+    enum_help (0.0.17)
+      activesupport (>= 3.0.0)
     erubi (1.10.0)
     execjs (2.8.1)
     factory_bot (6.2.0)
@@ -291,6 +293,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise-i18n
+  enum_help
   factory_bot_rails
   faker
   font-awesome-sass (~> 5.13)

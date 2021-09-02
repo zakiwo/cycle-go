@@ -71,15 +71,20 @@ gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 
+#ページの切り替え
 gem 'kaminari'
 
 gem 'faker'
 gem 'gimei'
 
+#日本語化対応させる
 gem "rails-i18n"
+#enumを_i18nで呼び出し
+gem 'enum_help'
 
 gem 'chart-js-rails', '~> 0.1.4'
 
 gem 'image_processing', '~> 1.2'
+
 
 

@@ -10,6 +10,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="wrapper">
+      <header>
+        <%= render "shared/header" %>
+      </header>
+      <main>
+        <div class="container px-5 px-sm-0">
+          <%= render "layouts/flash_message" %>
+          <%= yield %>
+        </div>
+      </main>
+      <footer>
+        <%= render "shared/footer" %>
+      </footer>
   </body>
 </html>
