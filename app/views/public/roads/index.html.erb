@@ -1,23 +1,23 @@
+<div class="row mt-3">
+  <h2>サイクリングロード一覧</h2>
+</div>
+
 <div class="row">
   <div class="col">
     <table class="table">
-      <thead>
-        <tr>
-          <th>画像</th>
-          <th>名前</th>
-          <th>説明</th>
-        </tr>
-      </thead>
       <tbody>
         <% @roads.each do |road| %>
         <tr>
         <% if road.image.attached? %>
-          <td><%= image_tag road.image.variant(resize:'200x200') %></td>
+          <td><%= image_tag road.image.variant(resize:'400x200'), class:"rounded" %></td>
         <% else %>
           <td></td>
         <% end %>
-          <td><%= link_to road.name, road_path(road) %></td>
-          <td><%= road.introduction %></td>
+          <td>
+            <h3><%= link_to road.name, road_path(road), class:"bold" %></h3>
+            <p><%= road.introduction %></p>
+            <p><i class="fas fa-road"></i><%= road.distance %>km <i class="fas fa-mountain ml-3"></i><%= road.elevation_gain %>m <i class="fas fa-gamepad ml-3"></i> <%= road.difficulty_i18n %></p>
+          </td>
         </tr>
         <% end %>
       </tbody>
