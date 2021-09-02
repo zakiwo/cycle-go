@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col">
+    <h2><%= @road.name %></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7">
+    <% if @road.image.attached? %>
+      <%= image_tag @road.image.variant(resize:'600x600') %>
+    <% end %>
+  </div>
+  <div class="col-md-5 bg-white">
+    <p><%= @road.introduction %></p>
+    <p>総距離：<%= @road.distance %>km</p>
+    <p>獲得標高：<%= @road.elevation_gain %>m</p>
+    <p>難易度：<%= @road.difficulty_i18n %></p>
+    <p>
+      <% if current_user.id == @road.user_id %>
+        <%= link_to "編集する", edit_road_path(@road), class:"btn btn-success" %>
+      <% end %>
+    </p>
+  </div>
+</div>
