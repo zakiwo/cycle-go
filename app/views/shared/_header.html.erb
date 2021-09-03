@@ -21,7 +21,7 @@
                 <%= link_to "CART",  '#', class:"nav-link text-center" %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to "LOGOUT",  '#', class:"nav-link text-center", method: :delete %>
+                <%= link_to "LOGOUT", destroy_user_session_path, class:"nav-link text-center", method: :delete %>
               </li>
 
            <% elsif admin_signed_in? %>
@@ -47,13 +47,13 @@
                 <%= link_to "ABOUT",  '#', class:"nav-link text-center" %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to "PRODUCTS",  '#', class:"nav-link text-center" %>
+                <%= link_to "ROADS",  roads_path, class:"nav-link text-center" %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to "SIGN UP",  '#', class:"nav-link text-center" %>
+                <%= link_to "SIGN UP", new_user_registration_path, class:"nav-link text-center" %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to "LOGIN",  '#', class:"nav-link text-center" %>
+                <%= link_to "LOGIN",  new_user_session_path, class:"nav-link text-center" %>
               </li>
             <% end %>
         </ul>

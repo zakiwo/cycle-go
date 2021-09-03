@@ -1,0 +1,30 @@
+<div class="row my-3">
+  <div class="col">
+    <h3><i class="fas fa-bicycle"></i> <%= @road.name %>のチェックポイント</h3>
+    <% if @check_point.category == "cautionary" %>
+      <p>注意してほしいところ！</p>
+    <% elsif @check_point.category == "scenic" %>
+      <p>景色のいいところ！</p>
+    <% end %>
+    <h2><%= @check_point.name %></h2>
+  </div>
+</div>
+
+<div class="row my-3">
+  <div class="col 10">
+    <% if @check_point.image.attached? %>
+      <%= image_tag @check_point.image.variant(resize:'1000x1000') %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col bg-white">
+    <p><%= @check_point.introduction %></p>
+    <p>
+      <% if user_signed_in? && current_user.id == @check_point.user_id %>
+        <%= link_to "編集する", edit_road_check_point_path(@road, @check_point), class:"btn btn-success" %>
+      <% end %>
+    </p>
+  </div>
+</div>

@@ -17,7 +17,7 @@ class Public::CheckPointsController < ApplicationController
     @check_point.road_id = @road.id
     if @check_point.save
       flash[:notice] = "チェックポイントが登録されました"
-      redirect_to road_path(@check_point.road)
+      redirect_to road_checkpoint_path(@road, @check_point)
     else
       render :new
     end
@@ -31,7 +31,7 @@ class Public::CheckPointsController < ApplicationController
     @check_point = CheckPoint.find(params[:id])
     if @check_point.update(check_point_params)
       flash[:notice] = "チェックポイントの更新ができました"
-      redirect_to road_checkpoint_path(@check_point.road, @check_point)
+      redirect_to road_check_point_path(@check_point.road, @check_point)
     else
       render :edit
     end
@@ -43,6 +43,6 @@ class Public::CheckPointsController < ApplicationController
 
   private
   def check_point_params
-    params.require(:check_point).permit(:name, :introduction, :latitude, :longitude)
+    params.require(:check_point).permit(:name, :introduction, :latitude, :longitude, :category, :image)
   end
 end

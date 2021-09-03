@@ -36,6 +36,10 @@ ja:
         easy: '初級'
         normal: '中級'
         hard: '上級'
+    check_point:
+      category:
+        cautionary: '注意したいポイント'
+        scenic: '景色のいいポイント'
 
   errors:
     format: "%{message}"

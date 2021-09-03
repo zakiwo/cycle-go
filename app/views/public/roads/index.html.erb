@@ -9,7 +9,7 @@
         <% @roads.each do |road| %>
         <tr>
         <% if road.image.attached? %>
-          <td><%= image_tag road.image.variant(resize:'400x200'), class:"rounded" %></td>
+          <td><%= image_tag road.image.variant(resize:'300x300'), class:"rounded" %></td>
         <% else %>
           <td></td>
         <% end %>
@@ -24,3 +24,4 @@
     </table>
   </div>
 </div>
+

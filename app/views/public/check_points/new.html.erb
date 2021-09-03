@@ -1,0 +1,52 @@
+<div class="row">
+  <%= render 'layouts/error_messages', model: @check_point %>
+</div>
+
+<div class="row">
+  <h2 class="m-5 bg-ligth"><%= @road.name %>にチェックポイントを登録</h2>
+</div>
+
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <%=form_with model:@check_point, url:road_check_points_path, method: :post, local:true do |f| %>
+      <tr>
+        <th>チェックポイント名</th>
+        <td><%= f.text_field :name,class:"check-point-name",size:40 %></td>
+      </tr>
+
+      <tr>
+        <th>説明</th>
+        <td><%= f.text_area :introduction, class:"check-point-intro", size: "39x3" %></td>
+      </tr>
+
+      <tr>
+        <th>画像の登録</th>
+        <td><%= f.file_field :image %></td>
+      </tr>
+
+      <tr>
+        <th>地点の緯度</th>
+        <td><%= f.text_field :latitude, class:"latitude",　size:40 %></td>
+      </tr>
+
+      <tr>
+        <th>地点の経度</th>
+        <td><%= f.text_field :longitude, class:"longitude",　size:40 %></td>
+      </tr>
+      <tr>
+        <th>ポイントの種類</th>
+        <td>
+          <%= f.radio_button :category, "cautionary" %>
+          <%= f.label :category, CheckPoint.categories_i18n[:cautionary] %>
+          <%= f.radio_button :category, "scenic" %>
+          <%= f.label :category, CheckPoint.categories_i18n[:scenic] %>
+        </td>
+      </tr>
+      <tr>
+        <th><td><%= f.submit '新規登録',class:"btn btn-success" %></td></th>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

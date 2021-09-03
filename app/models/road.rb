@@ -12,6 +12,8 @@ class Road < ApplicationRecord
   #ActiveStorageを使用
   has_one_attached :image
 
+  has_many :check_points
+
 
 
   enum difficulty: { easy: 0, normal: 1, hard: 2 }
