@@ -17,7 +17,7 @@ class Public::CheckPointsController < ApplicationController
     @check_point.road_id = @road.id
     if @check_point.save
       flash[:notice] = "チェックポイントが登録されました"
-      redirect_to road_checkpoint_path(@road, @check_point)
+      redirect_to road_check_point_path(@road, @check_point)
     else
       render :new
     end

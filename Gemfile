@@ -89,5 +89,8 @@ gem 'image_processing', '~> 1.2'
 #画像サイズ調整
 gem 'mini_magick', '~> 4.8'
 
+#環境変数を.envファイルに保存
+gem 'dotenv-rails'
+
 
 

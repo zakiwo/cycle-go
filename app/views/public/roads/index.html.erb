@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="col">
+  <div class="col-md-6">
     <table class="table">
       <tbody>
         <% @roads.each do |road| %>
@@ -22,6 +22,44 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+
+  <div class="col-md-6 bg-light">
+    <h2>スタート地点の一覧</h2>
+    <div id='road_map'></div>
+
+    <style>
+    #road_map {
+      height: 600px;
+      width: 500px;
+    }
+    </style>
+
+    <script>
+    let road_map
+
+    function initMap(){
+      geocoder = new google.maps.Geocoder()
+
+      road_map = new google.maps.Map(document.getElementById('road_map'), {
+        center: {lat: <%= @roads.find(2).start_latitude %>, lng: <%= @roads.find(2).start_longitude %> },
+        zoom: 10,
+      });
+
+      <% @roads.each do |road| %>
+      road_marker = new google.maps.Marker({
+        position:  {lat: <%= road.start_latitude %> , lng: <%= road.start_longitude %>},
+        map: road_map
+      });
+
+      infowindow = new google.maps.InfoWindow({
+        content: '<%= link_to road.name, road_path(road) %>'
+      });
+      infowindow.open(road_map, road_marker);
+      <% end %>
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
   </div>
 </div>
 
