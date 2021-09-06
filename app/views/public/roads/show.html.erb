@@ -1,21 +1,19 @@
 <div class="row my-3">
-  <div class="col">
-    <h2><i class="fas fa-bicycle"></i> <%= @road.name %></h2>
-  </div>
-</div>
-
-<div class="row my-3">
   <div class="col-md-6">
+    <h2 class="title">
+      <i class="fas fa-bicycle"></i> <%= @road.name %>
+      <div class="favorite-btn-<%= @road.id %>"><%= render 'public/roads/favorites', road: @road %></div>
+    </h2>
     <% if @road.image.attached? %>
-      <%= image_tag @road.image.variant(resize:'1000x1000') %>
+      <%= image_tag @road.image.variant(resize:'550x750') %>
     <% end %>
   </div>
-  <div class="col-md-5 bg-light ml-3">
-    <h2>チェックポイントの一覧</h2>
+  <div class="col-md-5 ml-3">
+    <h2 class="mb-5"><i class="fas fa-check-circle"></i>チェックポイントの一覧</h2>
     <div id='point_map'></div>
    <style>
       #point_map {
-        height: 600px;
+        height: 500px;
         width: 500px;
       }
    </style>
@@ -68,10 +66,10 @@
 
 <div class="row">
   <div class="col bg-white">
-    <p><%= @road.introduction %></p>
-    <p> <i class="fas fa-road"></i> 総距離：<%= @road.distance %>km</p>
-    <p><i class="fas fa-mountain"></i>獲得標高：<%= @road.elevation_gain %>m</p>
-    <p><i class="fas fa-gamepad"></i> 難易度：<%= @road.difficulty_i18n %></p>
+    <p class><%= @road.introduction %></p>
+    <p class="road-info"> <i class="fas fa-road"></i> 総距離：<%= @road.distance %>km</p>
+    <p class="road-info"><i class="fas fa-mountain"></i>獲得標高：<%= @road.elevation_gain %>m</p>
+    <p class="road-info"><i class="fas fa-gamepad"></i> 難易度：<%= @road.difficulty_i18n %></p>
     <p>
       <% if user_signed_in? && current_user.id == @road.user_id %>
         <%= link_to "編集する", edit_road_path(@road), class:"btn btn-success" %>

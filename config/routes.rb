@@ -22,9 +22,8 @@ Rails.application.routes.draw do
         resources :check_point_comments, only: [:create, :destroy]
       end
       resources :road_comments, only: [:create, :destroy]
+      resource :road_favorites, only: [:create, :destroy]
     end
-
-    resources :road_favorites, only: [:create, :destroy]
-
+    get '/favorites' => 'roads#favorite', as: 'my_favorite_road'
   end
 end

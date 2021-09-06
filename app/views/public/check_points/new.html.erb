@@ -2,13 +2,12 @@
   <%= render 'layouts/error_messages', model: @check_point %>
 </div>
 
-<div class="row">
-  <h2 class="m-5 bg-ligth"><%= @road.name %>にチェックポイントを登録</h2>
-</div>
+<h2 class="my-5 bg-light text-center"><%= @road.name %>に<br />チェックポイントを登録</h2>
 
 <div class="row">
-  <div class="col">
-    <table class="table">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <table class="table table-borderless">
       <%=form_with model:@check_point, url:road_check_points_path, method: :post, local:true do |f| %>
       <tr>
         <th>チェックポイント名</th>

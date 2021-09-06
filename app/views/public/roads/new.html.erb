@@ -2,13 +2,13 @@
   <%= render 'layouts/error_messages', model: @road %>
 </div>
 
-<div class="row">
-  <h2 class="m-5 bg-ligth">新規サイクリングロード登録</h2>
-</div>
+<h2 class="my-5 bg-light text-center">新規サイクリングロード登録</h2>
+
 
 <div class="row">
-  <div class="col">
-    <table class="table">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <table class="table table-borderless">
       <%=form_with model:@road, url:roads_path, method: :post, local:true do |f| %>
       <tr>
         <th>ロード名</th>
@@ -67,7 +67,7 @@
         </td>
       </tr>
       <tr>
-        <th><td><%= f.submit '新規登録',class:"btn btn-success" %></td></th>
+        <th><td><%= f.submit '新規でロードを登録',class:"btn btn-success" %></td></th>
       </tr>
       <% end %>
     </table>

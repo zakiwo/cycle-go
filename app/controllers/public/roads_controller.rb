@@ -40,8 +40,12 @@ class Public::RoadsController < ApplicationController
     Road.find(params[:id]).destroy
   end
 
+  def favorite
+    @roads = current_user.favorite_roads
+  end
+
   private
   def road_params
-    params.require(:road).permit(:name, :introduction, :start_latitude, :start_longitude, :goal_latitude, :goal_longitude, :distance, :elevation_gain, :difficulty, :is_editable, :image )
+    params.require(:road).permit(:name, :introduction, :start_latitude, :start_longitude, :goal_latitude, :goal_longitude, :distance, :elevation_gain, :difficulty, :is_editable, :image, :area)
   end
 end

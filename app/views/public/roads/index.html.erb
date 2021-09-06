@@ -1,65 +1,6 @@
 <div class="row mt-3">
-  <h2>サイクリングロード一覧</h2>
-</div>
-
-<div class="row">
   <div class="col-md-6">
-    <table class="table">
-      <tbody>
-        <% @roads.each do |road| %>
-        <tr>
-        <% if road.image.attached? %>
-          <td><%= image_tag road.image.variant(resize:'300x300'), class:"rounded" %></td>
-        <% else %>
-          <td></td>
-        <% end %>
-          <td>
-            <h3><%= link_to road.name, road_path(road), class:"bold", data: {"turbolinks" => false} %></h3>
-            <p><%= road.introduction %></p>
-            <p><i class="fas fa-road"></i><%= road.distance %>km <i class="fas fa-mountain ml-3"></i><%= road.elevation_gain %>m <i class="fas fa-gamepad ml-3"></i> <%= road.difficulty_i18n %></p>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="col-md-6 bg-light">
-    <h2>スタート地点の一覧</h2>
-    <div id='road_map'></div>
-
-    <style>
-    #road_map {
-      height: 600px;
-      width: 500px;
-    }
-    </style>
-
-    <script>
-    let road_map
-
-    function initMap(){
-      geocoder = new google.maps.Geocoder()
-
-      road_map = new google.maps.Map(document.getElementById('road_map'), {
-        center: {lat: <%= @roads.find(2).start_latitude %>, lng: <%= @roads.find(2).start_longitude %> },
-        zoom: 10,
-      });
-
-      <% @roads.each do |road| %>
-      road_marker = new google.maps.Marker({
-        position:  {lat: <%= road.start_latitude %> , lng: <%= road.start_longitude %>},
-        map: road_map
-      });
-
-      infowindow = new google.maps.InfoWindow({
-        content: '<%= link_to road.name, road_path(road), data: {"turbolinks" => false} %>'
-      });
-      infowindow.open(road_map, road_marker);
-      <% end %>
-    }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
+    <h2><i class="fas fa-bicycle"></i>サイクリングロード一覧</h2>
+    <%= render 'public/roads/roads', roads: @roads %>
   </div>
 </div>
-

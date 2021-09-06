@@ -14,11 +14,11 @@
               <li class="nav-item pl-4 active">
                 <%= link_to "MyPage", mypage_path, class:"nav-link text-center" %>
               </li>
-              <li class="nav-item pl-4">
-                <%= link_to "ROADS", roads_path, class:"nav-link text-center" %>
+              <li class="nav-item pl-4 active">
+                <%= link_to "FAVORITE", my_favorite_road_path, class:"nav-link text-center" %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to "CART",  '#', class:"nav-link text-center" %>
+                <%= link_to "ROADS", roads_path, class:"nav-link text-center" %>
               </li>
               <li class="nav-item pl-4">
                 <%= link_to "LOGOUT", destroy_user_session_path, class:"nav-link text-center", method: :delete %>
@@ -34,9 +34,6 @@
               </li>
               <li class="nav-item pl-4">
                 <%= link_to "ORDER",  '#', class:"nav-link text-center" %>
-              </li>
-              <li class="nav-item pl-4">
-                <%= link_to "GENRE",  '#', class:"nav-link text-center" %>
               </li>
               <li class="nav-item pl-4">
                 <%= link_to "LOGOUT",  '#', class:"nav-link text-center", method: :delete %>

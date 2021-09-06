@@ -36,10 +36,21 @@ ja:
         easy: '初級'
         normal: '中級'
         hard: '上級'
+      area:
+        Hokkaido: '北海道'
+        Tohoku: '東北'
+        Kanto: '関東'
+        Chubu: '中部'
+        Kinki: '近畿'
+        Chugoku: '中国'
+        Shikoku: '四国'
+        Kyusyu: '九州'
     check_point:
       category:
         cautionary: '注意したいポイント'
         scenic: '景色のいいポイント'
+
+
 
   errors:
     format: "%{message}"
