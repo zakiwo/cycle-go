@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col">
     <table class="table">
-      <%=form_with model:@check_point, url:road_check_point_path, method: :patch, local:true do |f| %>
+      <%=form_with model:@check_point, url:road_check_point_path, local: true do |f| %>
       <tr>
         <th>チェックポイント名</th>
         <td><%= f.text_field :name,class:"check-point-name",size:40 %></td>
