@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    attributes:
+      road:
+        name: 名前
+        introduction: 説明
+        start_latitude: 開始地点の緯度
+        start_longitude: 開始地点の経度
+        goal_latitude: 終了地点の緯度
+        goal_longitude: 終了地点の経度
+        distance: 総距離
+        elevation_gain: 獲得標高
+
+      check_point:
+        name: 名前
+        introduction: 説明
+        latitude: 地点の緯度
+        longitude: 地点の経度
+

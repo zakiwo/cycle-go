@@ -30,23 +30,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ja:
-  activerecord:
-    road:
-      name: "名前"
-      introduction: "説明"
-      start_latitude: "開始地点の緯度"
-      start_longitude: "開始地点の経度"
-      goal_latitude: "終了地点の緯度"
-      goal_longitude: "終了地点の経度"
-      distance: "総距離"
-      elevation_gain: "獲得標高"
-      
   enums:
     road:
       difficulty:
         easy: '初級'
         normal: '中級'
         hard: '上級'
+    check_point:
+      category:
+        cautionary: '注意したいポイント'
+        scenic: '景色のいいポイント'
 
   errors:
     format: "%{message}"

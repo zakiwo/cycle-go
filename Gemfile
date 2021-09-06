@@ -84,7 +84,13 @@ gem 'enum_help'
 
 gem 'chart-js-rails', '~> 0.1.4'
 
+#画像プロセッサ
 gem 'image_processing', '~> 1.2'
+#画像サイズ調整
+gem 'mini_magick', '~> 4.8'
+
+#環境変数を.envファイルに保存
+gem 'dotenv-rails'
 
 
 
