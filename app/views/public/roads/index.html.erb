@@ -14,7 +14,7 @@
           <td></td>
         <% end %>
           <td>
-            <h3><%= link_to road.name, road_path(road), class:"bold" %></h3>
+            <h3><%= link_to road.name, road_path(road), class:"bold", data: {"turbolinks" => false} %></h3>
             <p><%= road.introduction %></p>
             <p><i class="fas fa-road"></i><%= road.distance %>km <i class="fas fa-mountain ml-3"></i><%= road.elevation_gain %>m <i class="fas fa-gamepad ml-3"></i> <%= road.difficulty_i18n %></p>
           </td>
@@ -53,7 +53,7 @@
       });
 
       infowindow = new google.maps.InfoWindow({
-        content: '<%= link_to road.name, road_path(road) %>'
+        content: '<%= link_to road.name, road_path(road), data: {"turbolinks" => false} %>'
       });
       infowindow.open(road_map, road_marker);
       <% end %>
