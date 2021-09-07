@@ -38,8 +38,54 @@ div#error_explanation{
     }
 }
 
-
-
 .footer-main{
     background-color: $beige;
+}
+
+.favorite{
+  color: pink;
+}
+
+.road-info{
+  color: grey;
+}
+
+.star{
+  color: orange;
+}
+
+.area{
+  color: white;
+  font-size: 20px;
+  font-weight: lighter;
+  background-color: #808080;
+  border: solid;
+  border-width: thin;
+  border-radius: 0.2em;
+}
+
+.title{
+  font-weight: bold;
+  color: #6495ed;
+}
+
+main{
+  background-color: #f5f5f5;;
+}
+
+#wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+    padding-bottom: 60px;/*←footerの高さ*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
+footer{
+    width: 100%;
+    background-color: #89c7de;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
 }

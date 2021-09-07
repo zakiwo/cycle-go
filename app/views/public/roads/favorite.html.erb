@@ -1,0 +1,10 @@
+<div class="row">
+  <% unless @roads.empty?  %>
+    <%= render partial: 'public/roads/roads', locals:{ roads: @roads, title: 'Your Favorite Roads'} %>
+  <% else %>
+    <div class="col text-center">
+      <p>現在お気に入り登録しているロードはありません。</p>
+      <p><%= link_to "一覧に戻る", roads_path, class:"btn btn-secondary" %></p>
+    </div>
+  <% end %>
+</div>
