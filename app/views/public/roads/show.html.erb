@@ -1,15 +1,15 @@
 <div class="row my-3">
-  <div class="col-md-6">
-    <h2 class="title">
+  <div class="col-lg-6">
+    <h2 class="font-weight-bold">
       <i class="fas fa-bicycle"></i> <%= @road.name %>
       <div class="favorite-btn-<%= @road.id %>"><%= render 'public/roads/favorites', road: @road %></div>
     </h2>
     <% if @road.image.attached? %>
-      <%= image_tag @road.image.variant(resize:'550x750') %>
+      <%= image_tag @road.image.variant(combine_options:{gravity: :center, resize:"600x500^", crop:"600x500+0+0"}) %>
     <% end %>
   </div>
-  <div class="col-md-5 ml-3">
-    <h2 class="mb-5"><i class="fas fa-check-circle"></i>チェックポイントの一覧</h2>
+  <div class="col-lg-5 mt-sm-3 mt-md-0">
+    <h2 class="mb-5"><i class="fas fa-map"></i> Road view</h2>
     <div id='point_map'></div>
    <style>
       #point_map {
@@ -65,7 +65,7 @@
 </div>
 
 <div class="row">
-  <div class="col bg-white">
+  <div class="col">
     <p class><%= @road.introduction %></p>
     <p class="road-info"> <i class="fas fa-road"></i> 総距離：<%= @road.distance %>km</p>
     <p class="road-info"><i class="fas fa-mountain"></i>獲得標高：<%= @road.elevation_gain %>m</p>
@@ -81,7 +81,7 @@
 
 <div class="row my-3">
   <div class="col">
-    <h2>チェックポイント</h2>
+    <h2><i class="fas fa-monument"></i> Check Points</h2>
   </div>
 </div>
 
@@ -92,12 +92,12 @@
         <% @road.check_points.each do |point| %>
         <tr>
         <% if point.image.attached? %>
-          <td><%= image_tag point.image.variant(resize:'300x300'), class:"rounded" %></td>
+          <td><%= image_tag point.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}), class:"rounded" %></td>
         <% else %>
           <td></td>
         <% end %>
           <td>
-            <h3><%= link_to point.name, road_check_point_path(@road, point), class:"bold" %></h3>
+            <h3 class="title"><%= link_to point.name, road_check_point_path(@road, point), class:"bold" %></h3>
             <p><%= point.introduction %></p>
           </td>
         </tr>

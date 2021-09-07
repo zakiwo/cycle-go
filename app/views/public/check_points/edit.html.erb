@@ -5,8 +5,7 @@
 <h2 class="my-5 bg-light text-center"><%= @check_point.name %>の</br>チェックポイントを編集</h2>
 
 <div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+  <div class="col-md-6 offset-md-3">
     <table class="table table-borderless">
       <%=form_with model:@check_point, url:road_check_point_path, local: true do |f| %>
       <tr>
