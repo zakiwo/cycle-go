@@ -1,0 +1,70 @@
+<div class="col-md-6 offset-md-3">
+  <table class="table table-borderless border border-dark rounded">
+    <%=form_with model:road, method: :patch, local:true do |f| %>
+    <tr>
+      <th>ロード名</th>
+      <td><%= f.text_field :name,class:"road_name",size:40 %></td>
+    </tr>
+
+    <tr>
+      <th>説明</th>
+      <td><%= f.text_area :introduction, class:"road-intro", size: "39x3" %></td>
+    </tr>
+
+    <tr>
+      <th>画像の登録</th>
+      <td><%= f.file_field :image %></td>
+    </tr>
+
+    <tr>
+      <th>エリア</th>
+      <td><%= f.select :area, Road.areas.keys.map {|k| [I18n.t("enums.road.area.#{k}"), k]} %></td>
+    </tr>
+
+    <tr>
+      <th>スタート地点の緯度</th>
+      <td><%= f.text_field :start_latitude,class:"s-latitude" ,size:40 %></td>
+    </tr>
+
+    <tr>
+      <th>スタート地点の経度</th>
+      <td><%= f.text_field :start_longitude,class:"s-longitude" ,size:40 %></td>
+    </tr>
+
+    <tr>
+      <th>ゴール地点の緯度</th>
+      <td><%= f.text_field :goal_latitude,class:"g-latitude" ,size:40 %></td>
+    </tr>
+
+    <tr>
+      <th>ゴール地点の経度</th>
+      <td><%= f.text_field :goal_longitude,class:"g-longitude" ,size:40 %></td>
+    </tr>
+
+    <tr>
+      <th>総距離</th>
+      <td><%= f.text_field :distance,class:"distance" ,size:40 %> (km)</td>
+    </tr>
+
+    <tr>
+      <th>獲得標高</th>
+      <td><%= f.text_field :elevation_gain,class:"evalation-gain" ,size:40 %> (m)</td>
+    </tr>
+
+    <tr>
+      <th>難易度</th>
+      <td>
+        <%= f.radio_button :difficulty, "easy" %>
+        <%= f.label :difficulty, Road.difficulties_i18n[:easy] %>
+        <%= f.radio_button :difficulty, "normal" %>
+        <%= f.label :difficulty, Road.difficulties_i18n[:normal] %>
+        <%= f.radio_button :difficulty, "hard" %>
+        <%= f.label :difficulty, Road.difficulties_i18n[:hard] %>
+      </td>
+    </tr>
+    <tr>
+      <th><td><%= f.submit button_name, class:"btn btn-primary" %></td></th>
+    </tr>
+    <% end %>
+  </table>
+</div>

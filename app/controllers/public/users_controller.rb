@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_current_user
 
   def show
@@ -16,11 +17,9 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  #退会確認画面
   def unsubscribe
   end
 
-  #退会処理
   def withdraw
     @user.update(is_deleted: true)
     reset_session

@@ -1,4 +1,6 @@
 class Public::RoadsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @roads = Road.all
   end
