@@ -11,7 +11,7 @@ class Public::CheckPointCommentsController < ApplicationController
       flash[:notice] = "コメントしました！"
       redirect_to road_check_point_path(@road, @check_point)
     else
-      render 'check_points/show'
+      render 'public/check_points/show'
     end
   end
 

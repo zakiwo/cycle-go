@@ -9,7 +9,7 @@ class Public::RoadCommentsController < ApplicationController
       flash[:notice] = "コメントしました！"
       redirect_to road_path(@road)
     else
-      render 'roads/show'
+      render template: "public/roads/show"
     end
   end
 
