@@ -87,22 +87,9 @@
         <% end %>
       <% end %>
     </p>
-    <div>
-      <%= render partial:'shared/comment', locals: { model: @road, comment: @comment, url: road_road_comments_path(@road) } %>
+    <div class="road-comment">
+      <%= render partial:'public/roads/comment', locals: { model: @road, comment: @comment } %>
     </div>
-    <p>■コメント一覧(<%= @road.comments.count %>)</p>
-      <table class="table">
-      <th>
-        <% @road.comments.each do |comment| %>
-        <td>
-          <%= comment.body %>(<%= comment.user.nick_name %>さん)
-          <% if comment.user_id == current_user.id %>
-           <%= link_to "削除する", road_road_comment_path(@road, comment), method: :delete,  class:"btn btn-danger ml-3" %>
-          <% end %>
-        </td>
-        <% end %>
-      </th>
-      </table>
   </div>
 </div>
 

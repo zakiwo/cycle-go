@@ -1,0 +1,22 @@
+<p>
+  <% if user_signed_in? && !current_user.has_already_comment?(model) %>
+    <%= form_with model: comment, url: road_road_comments_path(model), method: :post, remote: true do |f| %>
+      <%= f.text_field :body, size:30 %>
+      <%= f.submit "コメントする", class:"btn btn-info ml-3" %>
+    <% end %>
+  <% end %>
+</p>
+
+<p>■コメント一覧(<%= model.comments.count %>)</p>
+<table class="table">
+<th>
+  <% model.comments.each do |comment| %>
+  <td>
+    <%= comment.body %>(<%= comment.user.nick_name %>さん)
+    <% if comment.user_id == current_user.id %>
+     <%= link_to "削除する", road_road_comment_path(model, comment), method: :delete, remote: true, class:"btn btn-danger ml-3" %>
+    <% end %>
+  </td>
+  <% end %>
+</th>
+</table>
