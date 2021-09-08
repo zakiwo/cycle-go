@@ -4,6 +4,7 @@ class Public::CheckPointsController < ApplicationController
   def show
     @road = Road.find(params[:road_id])
     @check_point = CheckPoint.find(params[:id])
+    @comment = CheckPointComment.new
   end
 
   def new

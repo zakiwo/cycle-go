@@ -7,6 +7,7 @@ class Public::RoadsController < ApplicationController
 
   def show
     @road = Road.find(params[:id])
+    @comment = RoadComment.new
   end
 
   def new

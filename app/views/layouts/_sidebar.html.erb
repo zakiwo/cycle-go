@@ -1,0 +1,14 @@
+<div class="input-group my-2">
+    <p class="mr-sm-4">■ワード検索</p>
+    <%= form_with url: search_path, method: :get,  local:true do |f| %>
+      <%= f.text_field :word, class:"form-control", placeholder:"キーワードで検索", size:38 %>
+      <%= f.hidden_field :category, value: "road" %>
+    <% end %>
+  </div>
+  <div class="search-area pt-3 d-none d-lg-block">
+    <p>■エリア検索</p>
+    <!--Todo: もっと良い書き方があるか-->
+    <% (0..7).each do |n| %>
+    <li><%= link_to Road.areas_i18n[:"#{Road.areas.keys[n]}"], search_path(word: n, category: "area"),  data: {"turbolinks" => false}  %></li>
+    <% end %>
+  </div>

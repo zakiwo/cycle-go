@@ -6,6 +6,7 @@ class CheckPoint < ApplicationRecord
   validates :category, presence: true
 
   belongs_to :road
+  has_many :comments, class_name: "CheckPointComment", dependent: :destroy
 
   enum category: { cautionary: 0, scenic: 1 }
 

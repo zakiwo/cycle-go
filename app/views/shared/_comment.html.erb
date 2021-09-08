@@ -1,0 +1,9 @@
+<p>
+  <% if user_signed_in? && !current_user.has_already_comment?(model) %>
+    <%= form_with model: comment, url: url, method: :post, local:true do |f| %>
+      <%= f.text_field :body %>
+      <%= f.submit "コメントする", class:"btn btn-info ml-3" %>
+    <% end %>
+  <% end %>
+</p>
+
