@@ -23,4 +23,8 @@ class Road < ApplicationRecord
   enum difficulty: { easy: 0, normal: 1, hard: 2 }
   enum area: { Hokkaido:0, Tohoku:1, Kanto:2, Chubu:3, Kinki:4, Chugoku:5, Shikoku:6, Kyusyu:7 }
 
+  def favorited_by?(user)
+    self.favorites.where(user_id: user.id).exists?
+  end
+
 end
