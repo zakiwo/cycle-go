@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     registrations: 'public/registrations',
   }
 
+  namespace :admin do
+    resources :roads
+    resources :user
+  end
+
   scope module: :public do
     root 'roads#index'
     get 'users/mypage' =>            'users#show', as: 'mypage'

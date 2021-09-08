@@ -1,15 +1,10 @@
-class Public::RoadsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-
+class Admin::RoadsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @roads = Road.all
   end
-
-  def show
-    @road = Road.find(params[:id])
-    @comment = RoadComment.new
-  end
-
+  
   def new
     @road = Road.new
   end
@@ -39,10 +34,10 @@ class Public::RoadsController < ApplicationController
     end
   end
 
-  def favorite
-    @roads = current_user.favorite_roads
+  def destroy
+    Road.find(params[:id]).destroy
   end
-
+  
   private
   def road_params
     params.require(:road).permit(:name, :introduction, :start_latitude, :start_longitude, :goal_latitude, :goal_longitude, :distance, :elevation_gain, :difficulty, :is_editable, :image, :area)
