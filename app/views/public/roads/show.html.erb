@@ -1,5 +1,9 @@
 <div class="row my-3">
-  <div class="col-lg-6">
+  <div class="col-lg-2 my-3 side-bar border border-dark rounded">
+    <%= render 'layouts/sidebar' %>
+  </div>
+
+  <div class="col-lg-5">
     <h2 class="font-weight-bold">
       <i class="fas fa-bicycle"></i> <%= @road.name %>
       <div class="favorite-btn-<%= @road.id %>"><%= render 'public/roads/favorites', road: @road %></div>
@@ -8,6 +12,7 @@
       <%= image_tag @road.image.variant(combine_options:{gravity: :center, resize:"600x500^", crop:"600x500+0+0"}) %>
     <% end %>
   </div>
+
   <div class="col-lg-5 mt-sm-3 mt-md-0">
     <h2 class="mb-5"><i class="fas fa-map"></i> Road view</h2>
     <div id='point_map'></div>
@@ -64,7 +69,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="road-information row">
   <div class="col">
     <p class><%= @road.introduction %></p>
     <p class="road-info"> <i class="fas fa-road"></i> 総距離：<%= @road.distance %>km</p>
@@ -78,10 +83,26 @@
         <% end %>
       <% end %>
     </p>
+    <div>
+      <%= render partial:'shared/comment', locals: { model: @road, comment: @comment, url: road_road_comments_path(@road) } %>
+    </div>
+    <p>■コメント一覧(<%= @road.comments.count %>)</p>
+      <table class="table">
+      <th>
+        <% @road.comments.each do |comment| %>
+        <td>
+          <%= comment.body %>(<%= comment.user.nick_name %>さん)
+          <% if comment.user_id == current_user.id %>
+           <%= link_to "削除する", road_road_comment_path(@road, comment), method: :delete,  class:"btn btn-danger ml-3" %>
+          <% end %>
+        </td>
+        <% end %>
+      </th>
+      </table>
   </div>
 </div>
 
-<div class="row my-3">
+<div class="check-points row my-3">
   <div class="col">
     <h2><i class="fas fa-monument"></i> Check Points</h2>
   </div>

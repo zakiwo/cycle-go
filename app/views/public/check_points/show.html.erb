@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    <h3><i class="fas fa-bicycle"></i> <%= link_to @road.name, road_path(@road) %>のチェックポイント</h3>
+    <h3><i class="fas fa-bicycle"></i> <%= link_to @road.name, road_path(@road), data: {"turbolinks" => false} %>のチェックポイント</h3>
     <% if @check_point.category == "cautionary" %>
       <p>注意してほしいところ！</p>
     <% elsif @check_point.category == "scenic" %>
@@ -10,13 +10,17 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-lg-2 my-3 side-bar border border-dark rounded">
+    <%= render 'layouts/sidebar' %>
+  </div>
+
+  <div class="col-lg-5">
     <h2 class="font-weight-bold"><i class="fas fa-monument"></i> <%= @check_point.name %></h2>
     <% if @check_point.image.attached? %>
       <%= image_tag @check_point.image.variant(combine_options:{gravity: :center, resize:"600x500^", crop:"600x500+0+0"}) %>
     <% end %>
   </div>
-  <div class="col-md-6">
+  <div class="col-lg-5">
     <h2><i class="fas fa-map-marker-alt"></i> Position</h2>
     <div id='point'></div>
 
@@ -61,5 +65,21 @@
         <%= link_to "編集する", edit_road_check_point_path(@road, @check_point), class:"btn btn-success" %>
       <% end %>
     </p>
+    <div>
+      <%= render partial:'shared/comment', locals: { model: @check_point, comment: @comment, url: road_check_point_check_point_comments_path(@road, @check_point) } %>
+    </div>
+    <p>■コメント一覧(<%= @check_point.comments.count %>)</p>
+    <table class="table">
+      <th>
+        <% @check_point.comments.each do |comment| %>
+        <td>
+          <%= comment.body %>(<%= comment.user.nick_name %>さん)
+          <% if comment.user_id == current_user.id %>
+           <%= link_to "削除する", road_check_point_check_point_comment_path(@road, @check_point, comment), method: :delete,  class:"btn btn-danger ml-3" %>
+          <% end %>
+        </td>
+        <% end %>
+      </th>
+    </table>
   </div>
 </div>

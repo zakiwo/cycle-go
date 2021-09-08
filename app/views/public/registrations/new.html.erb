@@ -1,9 +1,9 @@
-<div class="row">
-  <div class="col-md-8">
+<div class="row text-center">
+  <div class="col-sm-4 offset-sm-4">
     <h2 class="mt-3">新規登録</h2>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
-      <table class="table customer_info customer_form">
+      <table class="table table-borderless">
         <tbody>
           <tr>
             <td>名前</td>
@@ -44,5 +44,9 @@
   </div>
 </div>
 
-<h2 class="section-ttl">既に登録済みの方</h2>
-  <p><%= link_to "こちら", new_user_session_path, class: "underline" %>からログインしてください。</p>
+<div class="row text-center">
+  <div class="col-sm-4 offset-sm-4">
+    <h2>既に登録済みの方</h2>
+    <p><%= link_to "こちら", new_user_session_path, class: "underline" %>からログインしてください。</p>
+  </div>
+</div>
