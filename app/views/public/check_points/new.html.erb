@@ -5,5 +5,5 @@
 <h2 class="my-5 text-center"><%= @road.name %>に<br />チェックポイントを登録</h2>
 
 <div class="row">
-  <%= render partial:'public/check_points/check_point_form', locals: { check_point: @check_point, button_name: 'チェックポイント情報を更新'} %>
+  <%= render partial:'public/check_points/check_point_form', locals: { check_point: @check_point, button_name: '新しいチェックポイントを登録', url: new_road_check_point_path(@road)} %>
 </div>

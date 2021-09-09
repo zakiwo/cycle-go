@@ -2,7 +2,7 @@ class Public::RoadsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @roads = Road.all
+    @roads = Road.all.page(params[:page]).per(3)
   end
 
   def show

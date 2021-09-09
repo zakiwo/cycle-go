@@ -27,16 +27,16 @@
            <% elsif admin_signed_in? %>
            <!--admin is alreadey log in-->
               <li class="nav-item pl-4 active">
-                <%= link_to "PRODUCTS",  '#', class:"nav-link text-center" %>
+                <%= link_to "USERS",  admin_users_path, class:"nav-link text-center" %>
               </li>
               <li class="nav-item pl-4 active">
-                <%= link_to "CUSTOMERS",  '#', class:"nav-link text-center" %>
+                <%= link_to "ROADS", admin_roads_path, class:"nav-link text-center" %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to "ORDER",  '#', class:"nav-link text-center" %>
+                <%= link_to "SOMETHING",  '#', class:"nav-link text-center" %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to "LOGOUT",  '#', class:"nav-link text-center", method: :delete %>
+                <%= link_to "LOGOUT", destroy_admin_session_path, class:"nav-link text-center", method: :delete %>
               </li>
            <% else %>
            <!--User is log out-->

@@ -1,3 +1,46 @@
 <div class="row">
-  <%= render partial:'public/roads/roads', locals: { roads: @roads, title: 'Cycling Roads'} %>
+  <div class="col-lg-2 my-3 side-bar border border-dark rounded">
+    <%= render 'layouts/sidebar' %>
+  </div>
+  <div class="col-lg-5">
+    <%= render partial:'shared/roads/roads', locals: { roads: @roads, title: 'Cycling Roads'} %>
+  </div>
+
+  <div class="col-lg-5">
+    <h2><i class="fas fa-flag"></i> Start Points</h2>
+    <div id='road_map'></div>
+
+    <style>
+    #road_map {
+      height: 650px;
+      width: 600px;
+    }
+    </style>
+
+    <script>
+    let road_map
+
+    function initMap(){
+      geocoder = new google.maps.Geocoder()
+
+      road_map = new google.maps.Map(document.getElementById('road_map'), {
+        center: {lat: <%= @roads.first.start_latitude %>, lng: <%= @roads.first.start_longitude %> },
+        zoom: 10,
+      });
+
+      <% @roads.each do |road| %>
+      road_marker = new google.maps.Marker({
+        position:  {lat: <%= road.start_latitude %> , lng: <%= road.start_longitude %>},
+        map: road_map
+      });
+
+      infowindow = new google.maps.InfoWindow({
+        content: '<%= link_to road.name, road_path(road), data: {"turbolinks" => false} %>'
+      });
+      infowindow.open(road_map, road_marker);
+      <% end %>
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
+  </div>
 </div>

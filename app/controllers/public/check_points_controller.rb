@@ -26,6 +26,7 @@ class Public::CheckPointsController < ApplicationController
   end
 
   def edit
+    @road = Road.find(params[:road_id])
     @check_point = CheckPoint.find(params[:id])
   end
 
