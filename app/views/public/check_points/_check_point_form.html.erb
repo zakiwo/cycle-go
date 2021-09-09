@@ -1,6 +1,6 @@
 <div class="col-md-6 offset-md-3">
   <table class="table table-borderless">
-    <%=form_with model: check_point, url:road_check_points_path, method: :post, local:true do |f| %>
+    <%=form_with model: check_point, url: url, local:true do |f| %>
     <tr>
       <th>チェックポイント名</th>
       <td><%= f.text_field :name,class:"check-point-name",size:40 %></td>

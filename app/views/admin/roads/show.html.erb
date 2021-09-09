@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col">
+    　<h2><%= @road.name %>のチェックポイント</h2>
+    <table class="table">
+      <tbody>
+        <% @road.check_points.each do |point| %>
+        <tr>
+        <% if point.image.attached? %>
+          <td><%= image_tag point.image.variant(combine_options:{gravity: :center, resize:"200x200^", crop:"200x200+0+0"}), class:"rounded" %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+          <td>
+            <h3 class="title"><%= point.name %></h3>
+            <p><%= point.introduction %></p>
+          </td>
+          <td><%= link_to "編集する", edit_admin_road_check_point_path(@road, point), class:"btn btn-success" %></td>
+          <td><%= link_to "削除する", admin_road_check_point_path(@road, point), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

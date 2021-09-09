@@ -1,6 +1,6 @@
 <div class="col-md-6 offset-md-3">
   <table class="table table-borderless border border-dark rounded">
-    <%=form_with model:road, method: :patch, local:true do |f| %>
+    <%=form_with model:road, url: url, local:true do |f| %>
     <tr>
       <th>ロード名</th>
       <td><%= f.text_field :name,class:"road_name",size:40 %></td>

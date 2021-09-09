@@ -8,6 +8,16 @@ Rails.application.routes.draw do
     registrations: 'public/registrations',
   }
 
+  #routing参照
+  # https://qiita.com/ryosuketter/items/9240d8c2561b5989f049
+
+  namespace :admin do
+    resources :roads, except: [:new, :create] do
+      resources :check_points, only: [:edit, :update, :destroy]
+    end
+    resources :users, except: [:new, :create]
+  end
+
   scope module: :public do
     root 'roads#index'
     get 'users/mypage' =>            'users#show', as: 'mypage'
