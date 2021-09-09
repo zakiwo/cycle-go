@@ -1,6 +1,6 @@
 <div class="row">
   <% unless @roads.empty?  %>
-    <%= render partial: 'public/roads/roads', locals:{ roads: @roads, title: 'Your Favorite Roads'} %>
+    <%= render partial: 'shared/roads/roads', locals:{ roads: @roads, title: 'Your Favorite Roads'} %>
   <% else %>
     <div class="col text-center">
       <p>現在お気に入り登録しているロードはありません。</p>

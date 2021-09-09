@@ -40,7 +40,7 @@ class Public::RoadsController < ApplicationController
   end
 
   def favorite
-    @roads = current_user.favorite_roads
+    @roads = current_user.favorite_roads.page(params[:page]).per(3)
   end
 
   private
