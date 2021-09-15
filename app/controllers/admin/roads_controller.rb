@@ -16,7 +16,7 @@ class Admin::RoadsController < ApplicationController
   def update
     @road = Road.find(params[:id])
     if @road.update(road_params)
-      flash[:notice] = 'サイクリングロードの更新が完了しました'
+      flash[:notice] = "サイクリングロードの更新が完了しました"
       redirect_to admin_road_path(@road)
     else
       render :edit
@@ -25,6 +25,8 @@ class Admin::RoadsController < ApplicationController
 
   def destroy
     Road.find(params[:id]).destroy
+    flash[:notice] = "サイクリングロードを削除しました"
+    redirect_to admin_roads_path
   end
 
   private

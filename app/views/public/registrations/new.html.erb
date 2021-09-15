@@ -5,8 +5,8 @@
       <%= render "public/shared/error_messages", resource: resource %>
       <div class="form mb-4">
         <p>名前</p>
-        <%= f.label :first_name, "(姓)", class: "customer_name" %> <%= f.text_field :first_name, autofocus: true, :placeholder =>"難波", size:"10" %>
-        <%= f.label :last_name, "(名)", class: "customer_name ml-3" %> <%= f.text_field :last_name, :placeholder =>"太郎", size:"10" %>
+        <%= f.label :last_name, "(姓)" %> <%= f.text_field :last_name, autofocus: true, :placeholder =>"難波", size:"10" %>
+        <%= f.label :first_name, "(名)", class: "ml-3" %> <%= f.text_field :first_name, :placeholder =>"太郎", size:"10" %>
       </div>
       <div class="form mb-4">
         <%= f.label :nick_name, "ニックネーム" %><br/>

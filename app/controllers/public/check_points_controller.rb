@@ -33,7 +33,7 @@ class Public::CheckPointsController < ApplicationController
   def update
     @check_point = CheckPoint.find(params[:id])
     if @check_point.update(check_point_params)
-      flash[:notice] = "チェックポイントの更新ができました"
+      flash[:notice] = "チェックポイントを更新しました"
       redirect_to road_check_point_path(@check_point.road, @check_point)
     else
       render :edit
