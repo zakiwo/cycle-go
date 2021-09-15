@@ -1,0 +1,159 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+ @import "colors";
+ @charset "utf-8";
+
+#wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+    padding-bottom: 60px;/*←footerの高さ*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+    background-color: #f5f5f5;
+}
+
+div#error_explanation{
+  width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  border: solid 4px $dark_gray;
+  background-color: $very_light_gray;
+  text-align: left;
+  p.url {font-family: monospace;}
+}
+
+.header-main{
+    background-color: $brown;
+    .welcome-text {
+      background-color: $light_brown;
+      color: white;
+    }
+}
+
+/* ---------------------------- */
+/* ---- ハンバーガーアイコン ---- */
+/* ---------------------------- */
+#hm-icon {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 10;
+}
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+.menu-trigger {
+  position: relative;
+  width: 50px;
+  height: 44px;
+}
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+  border-radius: 4px;
+}
+.menu-trigger span:nth-child(1) {
+  top: 0;
+}
+.menu-trigger span:nth-child(2) {
+  top: 20px;
+}
+.menu-trigger span:nth-child(3) {
+  bottom: 0;
+}
+.menu-trigger.active span:nth-child(1) {
+  -webkit-transform: translateY(20px) rotate(-45deg);
+  transform: translateY(20px) rotate(-45deg);
+  background-color: #fff;
+}
+.menu-trigger.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-trigger.active span:nth-child(3) {
+  -webkit-transform: translateY(-20px) rotate(45deg);
+  transform: translateY(-20px) rotate(45deg);
+  background-color: #fff;
+}
+/* ------------------------ */
+/* ------ spメニュー ------ */
+/* ------------------------ */
+#sp-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: grey;
+  color: #fff;
+  width: 100%;
+  min-height: 100%;
+  display: none;
+  z-index: 9;
+}
+#sp-menu li {
+  text-align: center;
+  margin-bottom: 30px;
+  list-style: none;
+}
+#sp-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer{
+    width: 100%;
+    background-color: #89c7de;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+}
+
+.favorite{
+  color: pink;
+}
+
+.road-info{
+  color: grey;
+}
+
+.star{
+  color: orange;
+}
+
+.area{
+  color: white;
+  font-size: 20px;
+  font-weight: lighter;
+  background-color: #808080;
+  border: solid;
+  border-width: thin;
+  border-radius: 0.2em;
+}
+
+.title{
+  font-weight: bold;
+  color: #6495ed;
+}

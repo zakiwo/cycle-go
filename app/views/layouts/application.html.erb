@@ -4,12 +4,23 @@
     <title>CycleGo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="wrapper">
+      <header>
+        <%= render "shared/header" %>
+      </header>
+      <main>
+        <div class="container-fluid p-md-3 p-sm-0">
+          <%= render "layouts/flash_message" %>
+          <%= yield %>
+        </div>
+      </main>
+      <footer>
+        <%= render "shared/footer" %>
+      </footer>
   </body>
 </html>

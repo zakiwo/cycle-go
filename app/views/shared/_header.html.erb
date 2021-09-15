@@ -1,0 +1,80 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark header-main">
+    <div class="container-fluid">
+      <h1 class="m-0">
+        <%= link_to (image_tag 'logo/logo01.png', width: '15%', height: '5%'), roads_path, class:"navbar-brand d-block"%>
+      </h1>
+      <div id="grobalNav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+           <% if user_signed_in? %>
+           <!--User is alreadey log in-->
+              <div class="nav-item welcome-text p-2 pr-4 pl-4 rounded-pill d-flex align-items-center">
+                ようこそ<%= current_user.nick_name %>さん！
+              </div>
+              <li class="nav-item pl-4 active">
+                <%= link_to "MyPage", mypage_path, class:"nav-link text-center" %>
+              </li>
+              <li class="nav-item pl-4 active">
+                <%= link_to "FAVORITE", my_favorite_road_path, data: {"turbolinks" => false}, class:"nav-link text-center" %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to "ROADS", roads_path, data: {"turbolinks" => false}, class:"nav-link text-center" %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to "LOGOUT", destroy_user_session_path, class:"nav-link text-center", method: :delete %>
+              </li>
+
+           <% elsif admin_signed_in? %>
+           <!--admin is alreadey log in-->
+             <div class="nav-item welcome-text p-2 pr-4 pl-4 rounded-pill d-flex align-items-center">
+                管理者画面
+              </div>
+              <li class="nav-item pl-4 active">
+                <%= link_to "USERS",  admin_users_path, class:"nav-link text-center" %>
+              </li>
+              <li class="nav-item pl-4 active">
+                <%= link_to "ROADS", admin_roads_path, data: {"turbolinks" => false}, class:"nav-link text-center" %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to "SOMETHING",  '#', class:"nav-link text-center" %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to "LOGOUT", destroy_admin_session_path, class:"nav-link text-center", method: :delete %>
+              </li>
+           <% else %>
+           <!--User is log out-->
+              <li class="nav-item pl-4 active">
+                <%= link_to "ABOUT",  '#', class:"nav-link text-center" %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to "ROADS",  roads_path, data: {"turbolinks" => false}, class:"nav-link text-center" %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to "SIGN UP", new_user_registration_path, class:"nav-link text-center" %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to "LOGIN",  new_user_session_path, class:"nav-link text-center" %>
+              </li>
+            <% end %>
+        </ul>
+      </div>
+      <div id="sp-menu">
+        <h2>Cycle_Go</h2>
+        <ul>
+          <li><a href="#">ABOUT</a></li>
+          <li><%= link_to "ROADS", roads_path, data: {"turbolinks" => false} %></li>
+          <li><%= link_to "SIGN_UP", new_user_registration_path, data: {"turbolinks" => false} %></li>
+          <li><%= link_to "LOG_IN", new_user_session_path, data: {"turbolinks" => false} %></li>
+        </ul>
+      </div>
+
+      <div id="hm-icon" class="d-block d-md-none">
+        <a class="menu-trigger" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>

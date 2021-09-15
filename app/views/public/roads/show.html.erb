@@ -1,0 +1,124 @@
+<div class="row">
+  <%= render 'layouts/error_messages', model: @comment %>
+</div>
+
+<div class="row my-3">
+  <div class="col-lg-2 my-3 side-bar border border-dark rounded">
+    <%= render 'layouts/sidebar' %>
+  </div>
+
+  <div class="col-lg-5">
+    <h2 class="font-weight-bold">
+      <i class="fas fa-bicycle"></i> <%= @road.name %>
+      <div class="favorite-btn-<%= @road.id %>"><%= render 'public/roads/favorites', road: @road %></div>
+    </h2>
+    <% if @road.image.attached? %>
+      <%= image_tag @road.image.variant(combine_options:{gravity: :center, resize:"600x500^", crop:"600x500+0+0"}) %>
+    <% end %>
+  </div>
+
+  <div class="col-lg-5 mt-sm-3 mt-md-0">
+    <h2 class="mb-5"><i class="fas fa-map"></i> Road view</h2>
+    <div id='point_map'></div>
+   <style>
+      #point_map {
+        height: 500px;
+        width: 500px;
+      }
+   </style>
+
+  <script>
+    let point_map
+
+    function initMap() {
+      const directionsRenderer = new google.maps.DirectionsRenderer();
+      const directionsService = new google.maps.DirectionsService();
+      const point_map = new google.maps.Map(document.getElementById("point_map"), {
+        zoom: 12,
+        center: { lat: <%= @road.start_latitude %>, lng: <%= @road.start_longitude %> },
+      });
+      directionsRenderer.setMap(point_map);
+      calculateAndDisplayRoute(directionsService, directionsRenderer);
+      document.getElementById("point_map").addEventListener("change", () => {
+        calculateAndDisplayRoute(directionsService, directionsRenderer);
+      });
+      <% @road.check_points.each do |point| %>
+        point_marker = new google.maps.Marker({
+          position:  {lat: <%= point.latitude %> , lng: <%= point.longitude %>},
+          map: point_map
+        });
+
+        infowindow = new google.maps.InfoWindow({
+          content: '<%= link_to point.name, road_check_point_path(@road, point) %>'
+        });
+        infowindow.open(point_map, point_marker);
+      <% end %>
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+      directionsService
+        .route({
+          origin: { lat: <%= @road.start_latitude %>, lng:<%= @road.start_longitude %> },
+          destination: { lat: <%= @road.goal_latitude %>, lng:<%= @road.goal_longitude %> },
+          travelMode: google.maps.TravelMode.BICYCLING,
+        })
+        .then((response) => {
+          directionsRenderer.setDirections(response);
+        })
+        .catch((e) => window.alert("Directions request failed due to " + status));
+    }
+
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
+  </div>
+</div>
+
+<div class="road-information row">
+  <div class="col">
+    <p class><%= @road.introduction %></p>
+    <p class="road-info"> <i class="fas fa-road"></i> 総距離：<%= @road.distance %>km</p>
+    <p class="road-info"><i class="fas fa-mountain"></i>獲得標高：<%= @road.elevation_gain %>m</p>
+    <p class="road-info"><i class="fas fa-gamepad"></i> 難易度：<%= @road.difficulty_i18n %></p>
+    <p>
+      <% if user_signed_in? && current_user.id == @road.user_id %>
+        <%= link_to "チェックポイントを登録", new_road_check_point_path(@road), class:"btn btn-primary" %>
+        <% if current_user.id == @road.user_id %>
+          <%= link_to "編集する", edit_road_path(@road), class:"ml-3 btn btn-success" %>
+        <% end %>
+      <% end %>
+    </p>
+    <div class="road-comment">
+      <%= render partial:'public/roads/comment', locals: { model: @road, comment: @comment } %>
+    </div>
+  </div>
+</div>
+
+<div class="check-points row my-3">
+  <div class="col">
+    <h2><i class="fas fa-monument"></i> Check Points</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <tbody>
+        <% @road.check_points.each do |point| %>
+        <tr>
+        <% if point.image.attached? %>
+          <td><%= image_tag point.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}), class:"rounded" %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+          <td>
+            <h3 class="title"><%= link_to point.name, road_check_point_path(@road, point), class:"bold" %></h3>
+            <p><%= point.introduction %></p>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

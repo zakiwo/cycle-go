@@ -1,0 +1,56 @@
+<div class="col-md-6 offset-md-3 text-center">
+  <%= form_with model: road, url: url, local:true do |f| %>
+    <div class="form mb-4">
+      <%= f.label :name, "ロード名" %><br/>
+      <%= f.text_field :name, class:"road_name",size:40 %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :introduction, "説明" %><br/>
+      <%= f.text_area :introduction, class:"road-intro", size: "39x3" %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :image, "画像の登録" %><br/>
+      <%= f.file_field :image %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :area, "エリア" %><br/>
+      <%= f.select :area, Road.areas.keys.map {|k| [I18n.t("enums.road.area.#{k}"), k]} %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :start_latitude, "スタート地点の緯度" %><br/>
+      <%= f.text_field :start_latitude,class:"s-latitude" ,size:40 %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :start_longitude, "スタート地点の経度" %><br/>
+      <%= f.text_field :start_longitude,class:"s-longitude" ,size:40 %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :goal_latitude, "ゴール地点の緯度" %><br/>
+      <%= f.text_field :goal_latitude,class:"g-latitude" ,size:40 %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :goal_longitude, "ゴール地点の経度" %><br/>
+      <%= f.text_field :goal_longitude,class:"g-longitude" ,size:40 %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :distance, "総距離" %><br/>
+      <%= f.text_field :distance, class:"distance" ,size:35 %> (km)
+    </div>
+    <div class="form mb-4">
+      <%= f.label :evalation_gain, "獲得標高" %><br/>
+      <%= f.text_field :elevation_gain,class:"evalation-gain" ,size:35 %> (m)
+    </div>
+    <div class="form mb-4">
+      <p>難易度</p>
+      <%= f.radio_button :difficulty, "easy" %>
+      <%= f.label :difficulty, Road.difficulties_i18n[:easy] %>
+      <%= f.radio_button :difficulty, "normal" %>
+      <%= f.label :difficulty, Road.difficulties_i18n[:normal] %>
+      <%= f.radio_button :difficulty, "hard" %>
+      <%= f.label :difficulty, Road.difficulties_i18n[:hard] %>
+    </div>
+    <div class="actions mb-4 mt-3">
+      <%= f.submit button_name, class:"btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

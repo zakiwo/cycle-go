@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col">
+    <h2>サイクリングロード一覧</h2>
+    <table class="table">
+      <tbody>
+        <% @roads.each do |road| %>
+        <tr>
+        <% if road.image.attached? %>
+          <td><%= image_tag road.image.variant(combine_options:{gravity: :center, resize:"150x100^", crop:"150x100+0+0"}), class:"rounded" %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+          <td>
+            <h3 class="title"><%= link_to road.name, admin_road_path(road), class:"bold" %></h3>
+            <p><%= road.introduction %></p>
+          </td>
+          <td><%= link_to "編集する", edit_admin_road_path(road), class:"btn btn-success" %></td>
+          <td><%= link_to "削除する", admin_road_path(road), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= paginate @roads %>
+</div>

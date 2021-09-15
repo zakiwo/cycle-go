@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-lg-2 my-3 side-bar border border-dark rounded">
+    <%= render 'layouts/sidebar' %>
+  </div>
+  <% unless @roads.empty?  %>
+    <div class="col-lg-5">
+      <%= render partial: 'shared/roads/roads', locals:{ roads: @roads, title: 'Your Favorite Roads'} %>
+    </div>
+    <div class="col-lg-5">
+      <%= render partial: 'shared/roads/map', locals: { roads: @roads } %>
+    </div>
+  <% else %>
+    <div class="col text-center">
+      <p>現在お気に入り登録しているロードはありません。</p>
+      <p><%= link_to "一覧に戻る", roads_path, class:"btn btn-secondary" %></p>
+    </div>
+  <% end %>
+</div>

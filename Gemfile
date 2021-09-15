@@ -36,6 +36,10 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+group :production do
+  gem 'mysql2'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -55,7 +59,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
   gem "webdrivers"
   gem "rspec-rails"
   gem "factory_bot_rails"
@@ -69,16 +73,29 @@ gem 'devise-i18n'
 
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
+gem 'font-awesome-sass', '~> 5.13'
 
+#ページの切り替え
 gem 'kaminari'
 
 gem 'faker'
 gem 'gimei'
 
+#日本語化対応させる
 gem "rails-i18n"
+#enumを_i18nで呼び出し
+gem 'enum_help'
 
 gem 'chart-js-rails', '~> 0.1.4'
 
+#画像プロセッサ
 gem 'image_processing', '~> 1.2'
+#画像サイズ調整
+gem 'mini_magick', '~> 4.8'
+
+#環境変数を.envファイルに保存
+gem 'dotenv-rails'
+
+
 
 

@@ -1,0 +1,10 @@
+<div class="row">
+  <% unless @searches.empty? %>
+    <%= render partial:'shared/roads/roads', locals: { roads: @searches, title: 'Search results'} %>
+  <% else %>
+    <div class="col text-center">
+      <p>申し訳ございません。検索結果はありませんでした。</p>
+      <p><%= link_to "一覧に戻る", roads_path, class:"btn btn-secondary" %></p>
+    </div>
+  <% end %>
+</div>

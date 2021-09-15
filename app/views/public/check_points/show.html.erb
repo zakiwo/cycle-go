@@ -1,0 +1,76 @@
+<div class="row">
+  <%= render 'layouts/error_messages', model: @comment %>
+</div>
+
+<div class="row">
+  <div class="col">
+    <h3><i class="fas fa-bicycle"></i> <%= link_to @road.name, road_path(@road), data: {"turbolinks" => false} %>のチェックポイント</h3>
+    <% if @check_point.category == "cautionary" %>
+      <p>注意してほしいところ！</p>
+    <% elsif @check_point.category == "scenic" %>
+      <p>景色のいいところ！</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-2 my-3 side-bar border border-dark rounded">
+    <%= render 'layouts/sidebar' %>
+  </div>
+
+  <div class="col-lg-5">
+    <h2 class="font-weight-bold"><i class="fas fa-monument"></i> <%= @check_point.name %></h2>
+    <% if @check_point.image.attached? %>
+      <%= image_tag @check_point.image.variant(combine_options:{gravity: :center, resize:"600x500^", crop:"600x500+0+0"}) %>
+    <% end %>
+  </div>
+  <div class="col-lg-5">
+    <h2><i class="fas fa-map-marker-alt"></i> Position</h2>
+    <div id='point'></div>
+
+    <style>
+    #point {
+      height: 500px;
+      width: 500px;
+    }
+    </style>
+
+    <script>
+    let point
+
+    function initMap(){
+      geocoder = new google.maps.Geocoder()
+
+      point = new google.maps.Map(document.getElementById('point'), {
+        center: {lat: <%= @check_point.latitude %>, lng: <%= @check_point.longitude %> },
+        zoom: 18,
+      });
+
+      point_marker = new google.maps.Marker({
+        position:  {lat: <%= @check_point.latitude %> , lng: <%= @check_point.longitude %>},
+        map: point
+      });
+
+      infowindow = new google.maps.InfoWindow({
+        content: '<%= @check_point.name %>'
+      });
+      infowindow.open(point, point_marker);
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap" async defer></script>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <p><%= @check_point.introduction %></p>
+    <p>
+      <% if user_signed_in? && current_user.id == @check_point.user_id %>
+        <%= link_to "編集する", edit_road_check_point_path(@road, @check_point), class:"btn btn-success" %>
+      <% end %>
+    </p>
+    <div class="check-point-comment">
+      <%= render partial:'public/check_points/comment', locals: { model: @check_point, comment: @comment } %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="row">
+  <%= render 'layouts/error_messages', model: @road %>
+</div>
+
+<h2 class="my-5 text-center">サイクリングロードの編集</h2>
+<div class="row">
+  <%= render partial:'shared/roads/road_form', locals: { road: @road, button_name: 'ロード情報を更新', url: road_path(@road)} %>
+</div>

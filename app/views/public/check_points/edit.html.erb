@@ -1,0 +1,9 @@
+<div class="row">
+  <%= render 'layouts/error_messages', model: @check_point %>
+</div>
+
+<h2 class="my-5 text-center"><%= @check_point.name %>の</br>チェックポイントを編集</h2>
+
+<div class="row">
+  <%= render partial:'public/check_points/check_point_form', locals: { check_point: @check_point, button_name: 'チェックポイントを編集', url: road_check_point_path(@road, @check_point)} %>
+</div>

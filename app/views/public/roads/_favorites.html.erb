@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+  <% if road.favorited_by?(current_user) %>
+    <%= link_to road_road_favorites_path(road), method: :delete, class:"favorite", remote: true do %>
+      <i class="fas fa-heart"></i><%= road.favorites.count %>
+    <% end %>
+  <% else %>
+    <%= link_to road_road_favorites_path(road), method: :post, class:"favorite", remote: true do %>
+      <i class="far fa-heart"></i><%= road.favorites.count %>
+    <% end %>
+  <% end %>
+<% else %>
+  <!--ログインしていなければ、ログイン画面に遷移-->
+  <%= link_to new_user_session_path, class:"favorite" do %>
+    <i class="far fa-heart"></i><%= road.favorites.count %>
+  <% end %>
+<% end %>
