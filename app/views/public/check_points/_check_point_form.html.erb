@@ -1,38 +1,35 @@
-<div class="col-md-6 offset-md-3">
-  <table class="table table-borderless">
-    <%=form_with model: check_point, url: url, local:true do |f| %>
-    <tr>
-      <th>チェックポイント名</th>
-      <td><%= f.text_field :name,class:"check-point-name",size:40 %></td>
-    </tr>
-    <tr>
-      <th>説明</th>
-      <td><%= f.text_area :introduction, class:"check-point-intro", size: "39x3" %></td>
-    </tr>
-    <tr>
-      <th>画像の登録</th>
-      <td><%= f.file_field :image %></td>
-    </tr>
-    <tr>
-      <th>地点の緯度</th>
-      <td><%= f.text_field :latitude, class:"latitude",　size:40 %></td>
-    </tr>
-    <tr>
-      <th>地点の経度</th>
-      <td><%= f.text_field :longitude, class:"longitude",　size:40 %></td>
-    </tr>
-    <tr>
-      <th>ポイントの種類</th>
-      <td>
-        <%= f.radio_button :category, "cautionary" %>
-        <%= f.label :category, CheckPoint.categories_i18n[:cautionary] %>
-        <%= f.radio_button :category, "scenic" %>
-        <%= f.label :category, CheckPoint.categories_i18n[:scenic] %>
-      </td>
-    </tr>
-    <tr>
-      <th><td><%= f.submit button_name, class:"btn btn-primary" %></td></th>
-    </tr>
-    <% end %>
-  </table>
+<div class="col-md-6 offset-md-3 text-center">
+  <%= form_with model: check_point, url: url, local:true do |f| %>
+    <div class="form mb-4">
+      <%= f.label :name, "チェックポイント名" %><br/>
+      <%= f.text_field :name, class:"check_point_name",size:40 %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :introduction, "説明" %><br/>
+      <%= f.text_area :introduction, class:"road-intro", size: "39x3" %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :image, "画像の登録" %><br/>
+      <%= f.file_field :image %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :latitude, "地点の緯度" %><br/>
+      <%= f.text_field :latitude,class:"latitude" ,size:40 %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :longitude, "地点の経度" %><br/>
+      <%= f.text_field :longitude,class:"longitude" ,size:40 %>
+    </div>
+    <div class="form mb-4">
+      <%= f.label :caterogy, "ポイントの種類" %><br/>
+      <%= f.radio_button :category, "cautionary" %>
+      <%= f.label :category, CheckPoint.categories_i18n[:cautionary] %>
+      <%= f.radio_button :category, "scenic" %>
+      <%= f.label :category, CheckPoint.categories_i18n[:scenic] %>
+    </div>
+    <div class="actions mb-4 mt-3">
+      <%= f.submit button_name, class:"btn btn-primary" %>
+    </div>
+  <% end %>
 </div>
+
