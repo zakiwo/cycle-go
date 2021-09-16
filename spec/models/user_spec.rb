@@ -89,4 +89,25 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors[:password]).to include("パスワードを入力してください。")
   end
+
+  it "同じメールアドレスを使用すると、無効である" do
+    user = User.create(
+      first_name: '太郎',
+      last_name: '山田',
+      nick_name: '山ちゃん',
+      email: 'foo@example.com',
+      password: 'taroyamada',
+      introduction: '山田です。よろしくお願いします。'
+      )
+    user2 = User.new(
+      first_name: '花子',
+      last_name: '山田',
+      nick_name: '花ちゃん',
+      email: 'foo@example.com',
+      password: 'hanayamada',
+      introduction: '山田です。よろしくお願いします。'
+      )
+      user2.valid?
+      expect(user2.errors[:email]).to include("メールアドレスがすでに使用されています。")
+  end
 end

@@ -1,9 +1,11 @@
-<h2>
-  <i class="fas fa-bicycle"></i> <%= title %>
-  <% if user_signed_in? %>
-    <%= link_to "新規ロード作成", new_road_path, class:"btn btn-info ml-3" %>
-  <% end %>
-</h2>
+<div class="row pl-2">
+  <h2>
+    <i class="fas fa-bicycle"></i> <%= title %>
+    <% if user_signed_in? %>
+      <%= link_to "新規ロード作成", new_road_path, class:"btn btn-info ml-3" %>
+    <% end %>
+  </h2>
+</div>
 
 <% roads.each do |road| %>
 <div class="row border-top border-bottom p-3">
