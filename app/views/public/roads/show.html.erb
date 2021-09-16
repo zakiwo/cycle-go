@@ -7,14 +7,26 @@
     <%= render 'layouts/sidebar' %>
   </div>
 
-  <div class="col-lg-5">
-    <h2 class="font-weight-bold">
-      <i class="fas fa-bicycle"></i> <%= @road.name %>
-      <div class="favorite-btn-<%= @road.id %>"><%= render 'public/roads/favorites', road: @road %></div>
-    </h2>
-    <% if @road.image.attached? %>
-      <%= image_tag @road.image.variant(combine_options:{gravity: :center, resize:"600x500^", crop:"600x500+0+0"}) %>
-    <% end %>
+    <div class="col-lg-5">
+      <h2 class="font-weight-bold">
+        <i class="fas fa-bicycle"></i> <%= @road.name %>
+        <div class="favorite-btn-<%= @road.id %>"><%= render 'public/roads/favorites', road: @road %></div>
+      </h2>
+      <% if @road.image.attached? %>
+        <%= image_tag @road.image.variant(combine_options:{gravity: :center, resize:"400x400^", crop:"400x400+0+0"}) %>
+      <% end %>
+      <p class><%= @road.introduction %></p>
+      <p class="road-info"> <i class="fas fa-road"></i> 総距離：<%= @road.distance %>km</p>
+      <p class="road-info"><i class="fas fa-mountain"></i>獲得標高：<%= @road.elevation_gain %>m</p>
+      <p class="road-info"><i class="fas fa-gamepad"></i> 難易度：<%= @road.difficulty_i18n %></p>
+      <p>
+        <% if user_signed_in? && current_user.id == @road.user_id %>
+          <%= link_to "チェックポイントを登録", new_road_check_point_path(@road), class:"btn btn-primary" %>
+          <% if current_user.id == @road.user_id %>
+            <%= link_to "編集する", edit_road_path(@road), class:"ml-3 btn btn-success" %>
+          <% end %>
+        <% end %>
+      </p>
   </div>
 
   <div class="col-lg-5 mt-sm-3 mt-md-0">
@@ -23,7 +35,7 @@
    <style>
       #point_map {
         height: 500px;
-        width: 500px;
+        width: 100%;
       }
    </style>
 
@@ -73,52 +85,29 @@
   </div>
 </div>
 
-<div class="road-information row">
-  <div class="col">
-    <p class><%= @road.introduction %></p>
-    <p class="road-info"> <i class="fas fa-road"></i> 総距離：<%= @road.distance %>km</p>
-    <p class="road-info"><i class="fas fa-mountain"></i>獲得標高：<%= @road.elevation_gain %>m</p>
-    <p class="road-info"><i class="fas fa-gamepad"></i> 難易度：<%= @road.difficulty_i18n %></p>
-    <p>
-      <% if user_signed_in? && current_user.id == @road.user_id %>
-        <%= link_to "チェックポイントを登録", new_road_check_point_path(@road), class:"btn btn-primary" %>
-        <% if current_user.id == @road.user_id %>
-          <%= link_to "編集する", edit_road_path(@road), class:"ml-3 btn btn-success" %>
-        <% end %>
+
+<div class="offset-md-2 road-comment">
+  <%= render partial:'public/roads/comment', locals: { model: @road, comment: @comment } %>
+</div>
+
+<div class="row offset-md-2">
+  <h2><i class="fas fa-monument"></i> Check Points</h2> 
+</div>
+  
+<div class="row offset-md-2">
+  <% @road.check_points.each do |point| %>
+  <div class="row border-top border-bottom p-3">
+    <div class="col-lg-5">
+      <% if point.image.attached? %>
+      <%= image_tag point.image.variant(combine_options:{gravity: :center, resize:"250x200^", crop:"250x200+0+0"}), class:"rounded" %>
       <% end %>
-    </p>
-    <div class="road-comment">
-      <%= render partial:'public/roads/comment', locals: { model: @road, comment: @comment } %>
+    </div>
+    <div class="col-lg-7">
+      <h3><%= link_to point.name, road_check_point_path(@road, point), class:"title",  data: {"turbolinks" => false} %></h3>
+      <p><%= point.introduction.truncate(45) %></p>
     </div>
   </div>
-</div>
-
-<div class="check-points row my-3">
-  <div class="col">
-    <h2><i class="fas fa-monument"></i> Check Points</h2>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col">
-    <table class="table">
-      <tbody>
-        <% @road.check_points.each do |point| %>
-        <tr>
-        <% if point.image.attached? %>
-          <td><%= image_tag point.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}), class:"rounded" %></td>
-        <% else %>
-          <td></td>
-        <% end %>
-          <td>
-            <h3 class="title"><%= link_to point.name, road_check_point_path(@road, point), class:"bold" %></h3>
-            <p><%= point.introduction %></p>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  <% end %>
 </div>
 
 

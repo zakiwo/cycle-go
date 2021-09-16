@@ -17,3 +17,12 @@ ja:
         latitude: 地点の緯度
         longitude: 地点の経度
 
+      user:
+        first_name: 名
+        last_name: 姓
+        introduction: 自己紹介
+        nick_name: ニックネーム
+        email: メールアドレス
+        password: パスワード
+
+
