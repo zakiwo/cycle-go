@@ -3,11 +3,11 @@
     <%= render 'layouts/sidebar' %>
   </div>
   <% unless @searches.empty? %>
-    <div class="col-lg-5 p-2">
+    <div class="col-lg-5 ml-2">
       <%= render partial:'shared/roads/roads', locals: { roads: @searches, title: 'Seaech results'} %>
     </div>
 
-    <div class="col-lg-5">
+    <div class="col-lg-4">
       <%= render partial: 'shared/roads/map', locals: { roads: @searches } %>
     </div>
   <% else %>

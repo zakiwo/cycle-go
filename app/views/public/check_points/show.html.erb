@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col">
     <h3><i class="fas fa-bicycle"></i> <%= link_to @road.name, road_path(@road), data: {"turbolinks" => false} %>のチェックポイント</h3>
-    <p><%= @check_point.category_i18n %></p>
+    <p><span id="point-card-<%= @check_point.category %>"><%= @check_point.category_i18n %></span></p>
   </div>
 </div>
 
@@ -17,7 +17,7 @@
   <div class="col-lg-5">
     <h2 class="font-weight-bold"><i class="fas fa-monument"></i> <%= @check_point.name %></h2>
     <% if @check_point.image.attached? %>
-      <%= image_tag @check_point.image.variant(combine_options:{gravity: :center, resize:"600x500^", crop:"600x500+0+0"}), class: "w-75" %>
+      <%= image_tag @check_point.image.variant(combine_options:{gravity: :center, resize:"250x200^", crop:"250x200+0+0"}), class:"w-75" %>
     <% end %>
   </div>
   <div class="col-lg-5">
@@ -27,7 +27,7 @@
     <style>
     #point {
       height: 500px;
-      width: 90%;
+      width: 100%;
     }
     </style>
 
@@ -58,7 +58,7 @@
 </div>
 
 <div class="row">
-  <div class="col">
+  <div class="col offset-lg-2 pt-3">
     <p><%= @check_point.introduction %></p>
     <p>
       <% if user_signed_in? && current_user.id == @check_point.user_id %>

@@ -13,7 +13,7 @@
         <div class="favorite-btn-<%= @road.id %>"><%= render 'public/roads/favorites', road: @road %></div>
       </h2>
       <% if @road.image.attached? %>
-        <%= image_tag @road.image.variant(combine_options:{gravity: :center, resize:"400x400^", crop:"400x400+0+0"}), class:"rounded w-75" %>
+        <%= image_tag @road.image.variant(combine_options:{gravity: :center, resize:"250x200^", crop:"250x200+0+0"}), class:"rounded w-100" %>
       <% end %>
       <p class><%= @road.introduction %></p>
       <p class="road-info"> <i class="fas fa-road"></i> 総距離：<%= @road.distance %>km</p>
@@ -29,8 +29,8 @@
       </p>
   </div>
 
-  <div class="col-lg-5 mt-sm-3 mt-md-0">
-    <h2 class="mb-5"><i class="fas fa-map"></i> Road view</h2>
+  <div class="col-lg-4 mt-sm-3 mt-md-0">
+    <h2 class="mb-5"><i class="fas fa-map"></i> Road Map</h2>
     <div id='point_map'></div>
    <style>
       #point_map {
@@ -96,12 +96,12 @@
 
 <div class="row offset-lg-2 p-3">
   <% @road.check_points.each do |point| %>
-  <div class="col-12 col-md-5 col-lg-4 my-2 mr-2 card" style="width: 18rem;">
+  <div class="col-12 col-md-5 col-lg-4 my-2 mr-3 card" style="width: 18rem;">
     <% if point.image.attached? %>
     <a class="pt-3"><%= image_tag point.image.variant(combine_options:{gravity: :center, resize:"250x200^", crop:"250x200+0+0"}), class:"rounded w-100" %></a>
     <% end %>
     <div class="card-body">
-      <h5 class="card-title font-weight-bold"><%= point.name %></h5>
+      <h5 class="card-title font-weight-bold"><span id="point-card-<%= point.category %>"><%= point.name %></span></h5>
       <p class="card-text"><%= point.introduction.truncate(45) %></p>
       <a><%= link_to "詳しく見る！", road_check_point_path(@road, point), class:"btn btn-primary",  data: {"turbolinks" => false} %></a>
     </div>
