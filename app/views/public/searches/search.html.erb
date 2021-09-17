@@ -1,6 +1,15 @@
 <div class="row">
+  <div class="col-lg-2 my-3 side-bar border border-dark rounded p-2">
+    <%= render 'layouts/sidebar' %>
+  </div>
   <% unless @searches.empty? %>
-    <%= render partial:'shared/roads/roads', locals: { roads: @searches, title: 'Search results'} %>
+    <div class="col-lg-5 ml-2">
+      <%= render partial:'shared/roads/roads', locals: { roads: @searches, title: 'Seaech results'} %>
+    </div>
+
+    <div class="col-lg-4">
+      <%= render partial: 'shared/roads/map', locals: { roads: @searches } %>
+    </div>
   <% else %>
     <div class="col text-center">
       <p>申し訳ございません。検索結果はありませんでした。</p>

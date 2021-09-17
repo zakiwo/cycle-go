@@ -23,9 +23,11 @@
     <div class="form mb-4">
       <%= f.label :caterogy, "ポイントの種類" %><br/>
       <%= f.radio_button :category, "cautionary" %>
-      <%= f.label :category, CheckPoint.categories_i18n[:cautionary] %>
+      <%= f.label :category, CheckPoint.categories_i18n[:cautionary] %><br/>
       <%= f.radio_button :category, "scenic" %>
-      <%= f.label :category, CheckPoint.categories_i18n[:scenic] %>
+      <%= f.label :category, CheckPoint.categories_i18n[:scenic] %><br/>
+      <%= f.radio_button :category, "restful" %>
+      <%= f.label :category, CheckPoint.categories_i18n[:restful] %>
     </div>
     <div class="actions mb-4 mt-3">
       <%= f.submit button_name, class:"btn btn-primary" %>
