@@ -43,6 +43,16 @@ class Public::RoadsController < ApplicationController
     @roads = current_user.favorite_roads.page(params[:page]).per(3)
   end
 
+  def sort
+    @road = Road.find(params[:id])
+    category = params[:category]
+    if category == "all"
+      @check_points = CheckPoint.where(road_id: @road.id)
+    else
+      @check_points = CheckPoint.where(road_id: @road.id).where(category: category)
+    end
+  end
+
   private
   def road_params
     params.require(:road).permit(:name, :introduction, :start_latitude, :start_longitude, :goal_latitude, :goal_longitude, :distance, :elevation_gain, :difficulty, :is_editable, :image, :area)

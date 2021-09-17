@@ -39,11 +39,7 @@ class Public::CheckPointsController < ApplicationController
       render :edit
     end
   end
-
-  def destroy
-    CheckPoint.find(params[:id]).destroy
-  end
-
+  
   private
   def check_point_params
     params.require(:check_point).permit(:name, :introduction, :latitude, :longitude, :category, :image)

@@ -36,5 +36,6 @@ Rails.application.routes.draw do
       resource :road_favorites, only: [:create, :destroy]
     end
     get '/favorites' => 'roads#favorite', as: 'my_favorite_road'
+    get 'roads/:id/sort' => 'roads#sort', as: 'sort_check_point'
   end
 end
