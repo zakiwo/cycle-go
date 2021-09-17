@@ -1,5 +1,5 @@
 class Public::RoadsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :sort]
 
   def index
     @roads = Road.all.page(params[:page]).per(3)
@@ -47,9 +47,9 @@ class Public::RoadsController < ApplicationController
     @road = Road.find(params[:id])
     category = params[:category]
     if category == "all"
-      @check_points = CheckPoint.where(road_id: @road.id)
+      @check_points = CheckPoint.where(road_id: @road.id).page(params[:page]).per(6)
     else
-      @check_points = CheckPoint.where(road_id: @road.id).where(category: category)
+      @check_points = CheckPoint.where(road_id: @road.id).where(category: category).page(params[:page]).per(6)
     end
   end
 
