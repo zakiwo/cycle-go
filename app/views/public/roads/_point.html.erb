@@ -1,0 +1,12 @@
+<% model.each do |point| %>
+  <div class="col-12 col-md-5 col-lg-4 my-2 mr-3 card border border-dark" id="point-card-<%= point.category %>" style="width: 18rem;">
+    <% if point.image.attached? %>
+    <a class="pt-3"><%= image_tag point.image.variant(combine_options:{gravity: :center, resize:"250x200^", crop:"250x200+0+0"}), class:"rounded w-100" %></a>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title font-weight-bold"><span id="point-card-<%= point.category %>"><%= point.name %></span></h5>
+      <p class="card-text"><%= point.introduction.truncate(45) %></p>
+      <a><%= link_to "詳しく見る！", road_check_point_path(road, point), class:"btn btn-light",  data: {"turbolinks" => false} %></a>
+    </div>
+  </div>
+<% end %>
