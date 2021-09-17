@@ -94,16 +94,16 @@
   <h2><i class="fas fa-monument"></i> Check Points</h2>
   <table class="table-light table-bordered text-center col-md-6 pl-3">
     <tr>
-      <td><%= link_to "全て表示", sort_check_point_path(category: "all"), class:"pr-2", remote: true %></td>
-      <td><%= link_to "注意箇所！", sort_check_point_path(category: "cautionary"), class:"pr-2", remote: true %></td>
-      <td><%= link_to "景色がいい！", sort_check_point_path(category: "scenic"), class:"pr-2", remote: true%></td>
-      <td><%= link_to "休憩できる！", sort_check_point_path(category: "restful"), remote: true%></td>
+      <td><%= link_to "全て表示(#{ @road.check_points.count} )", sort_check_point_path(category: "all"), class:"pr-2", remote: true %></td>
+      <td><%= link_to "注意箇所！(#{ @road.check_points.where(category: "cautionary").count })", sort_check_point_path(category: "cautionary"), class:"pr-2", remote: true %></td>
+      <td><%= link_to "景色がいい！(#{ @road.check_points.where(category: "scenic").count })", sort_check_point_path(category: "scenic"), class:"pr-2", remote: true%></td>
+      <td><%= link_to "休憩できる！(#{ @road.check_points.where(category: "restful").count })", sort_check_point_path(category: "restful"), remote: true%></td>
     </tr>
   </table>
 </div>
 
 <div class="road-points row offset-lg-2 p-3">
-  <%= render 'public/roads/point', road:@road, model: @road.check_points %>
+  <%= render 'public/roads/point', road:@road, model: @road.check_points.page(params[:page]).per(6) %>
 </div>
 
 
