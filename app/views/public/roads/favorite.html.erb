@@ -3,10 +3,10 @@
     <%= render 'layouts/sidebar' %>
   </div>
   <% unless @roads.empty?  %>
-    <div class="col-lg-5">
+    <div class="col-lg-5 ml-2">
       <%= render partial: 'shared/roads/roads', locals:{ roads: @roads, title: 'Your Favorite Roads'} %>
     </div>
-    <div class="col-lg-5">
+    <div class="col-lg-4">
       <%= render partial: 'shared/roads/map', locals: { roads: @roads } %>
     </div>
   <% else %>

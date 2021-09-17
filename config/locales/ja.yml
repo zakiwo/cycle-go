@@ -47,8 +47,9 @@ ja:
         Kyusyu: '九州'
     check_point:
       category:
-        cautionary: '注意したいポイント'
-        scenic: '景色のいいポイント'
+        cautionary: '注意したいポイント！'
+        scenic: '景色のいいポイント！'
+        restful: '休憩できるポイント！'
 
 
 
