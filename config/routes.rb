@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
+    get 'about' => 'homes#about'
     root 'roads#index'
     get 'users/mypage' =>            'users#show', as: 'mypage'
     get 'users/information/edit' =>  'users#edit', as: 'edit_information'
