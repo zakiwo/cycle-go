@@ -1,1 +1,2 @@
-$('.road-points').html("<%= escape_javascript(render partial:'public/roads/point',locals:{road: @road, model: @check_points}) %>");
+$('.road-lists').html("<%= escape_javascript(render partial: 'shared/roads/roads',locals:{roads: @roads, title: 'Cycling Roads'}) %>");
+$('.road-map').html("<%= escape_javascript(render partial: 'shared/roads/map',locals:{roads: @roads }) %>");

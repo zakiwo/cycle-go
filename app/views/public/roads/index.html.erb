@@ -2,11 +2,11 @@
   <div class="col-11 col-lg-2 m-4 side-bar border border-dark rounded p-2">
     <%= render 'layouts/sidebar' %>
   </div>
-  <div class="col-lg-5 ml-2 pt-3">
+  <div class="road-lists col-lg-5 ml-2 pt-3">
     <%= render partial:'shared/roads/roads', locals: { roads: @roads, title: 'Cycling Roads'} %>
   </div>
 
-  <div class="col-lg-4 pt-3">
+  <div class="road-map col-lg-4 pt-3">
     <%= render partial: 'shared/roads/map', locals: { roads: @roads } %>
   </div>
 </div>

@@ -1,5 +1,6 @@
 class Public::RoadsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :sort]
+  before_action :authenticate_user!, except: [:index, :show, :sort, :sort_point]
+  impressionist :actions=> [:show]
 
   def index
     @roads = Road.all.page(params[:page]).per(3)
@@ -7,6 +8,7 @@ class Public::RoadsController < ApplicationController
 
   def show
     @road = Road.find(params[:id])
+    impressionist(@road, nil, unique: [:session_hash.to_s])
     @comment = RoadComment.new
   end
 
@@ -44,6 +46,18 @@ class Public::RoadsController < ApplicationController
   end
 
   def sort
+    sort = params[:sort]
+    if sort == "favorite"
+      @roads = Kaminari.paginate_array(Road.all.sort_by{|road| road.favorites.count}.reverse).page(params[:page]).per(3)
+    elsif sort == "latest"
+      @roads = Road.all.order("created_at DESC").page(params[:page]).per(3)
+    elsif sort == "views"
+      @roads = Kaminari.paginate_array(Road.all.sort_by{|road| road.impressionist_count}.reverse).page(params[:page]).per(3)
+    end
+    render 'index'
+  end
+
+  def sort_point
     @road = Road.find(params[:id])
     category = params[:category]
     if category == "all"

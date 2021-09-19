@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' =>       'users#unsubscribe', as: 'confirm_unsubscribe'
     patch 'users/withdraw' =>        'users#withdraw', as: 'withdraw_user'
     get 'search' => 'searches#search', as: 'search'
+    get 'roads/sort' => 'roads#sort', as: 'sort'
 
     resources :roads do
       resources :check_points, except: [:index] do
@@ -37,6 +38,6 @@ Rails.application.routes.draw do
       resource :road_favorites, only: [:create, :destroy]
     end
     get '/favorites' => 'roads#favorite', as: 'my_favorite_road'
-    get 'roads/:id/sort' => 'roads#sort', as: 'sort_check_point'
+    get 'roads/:id/sort_point' => 'roads#sort_point', as: 'sort_check_point'
   end
 end
