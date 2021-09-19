@@ -96,6 +96,9 @@ gem 'mini_magick', '~> 4.8'
 #環境変数を.envファイルに保存
 gem 'dotenv-rails'
 
+#閲覧数
+gem 'impressionist', '~>1.6.1'
+
 
 
 

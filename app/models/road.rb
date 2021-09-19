@@ -18,6 +18,9 @@ class Road < ApplicationRecord
   has_many :favorite_users, through: :favorites, source: :user
   has_many :comments, class_name: "RoadComment", dependent: :destroy
 
+   #閲覧数
+  is_impressionable
+
 
 
   enum difficulty: { easy: 0, normal: 1, hard: 2 }
