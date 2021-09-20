@@ -5,13 +5,6 @@
       <%= link_to "新規ロード作成", new_road_path, class:"btn btn-info ml-3" %>
     <% end %>
   </h2>
-  <table class="col-11 col-md-6 table table-primary table-sm table-bordered">
-    <tr>
-      <td><%= link_to "更新順", sort_path(sort: "latest"), data: {"turbolinks" => false} %></td>
-      <td><%= link_to "いいね順", sort_path(sort: "favorite"), data: {"turbolinks" => false} %></td>
-      <td><%= link_to "閲覧数", sort_path(sort: "views"), data: {"turbolinks" => false} %></td>
-    </tr>
-  </table>
 </div>
 
 <% roads.each do |road| %>
