@@ -3,15 +3,15 @@
     <%= render 'layouts/sidebar' %>
   </div>
   <% unless @searches.empty? %>
-    <div class="col-lg-5 ml-2">
+    <div class="col-lg-5 ml-2 pt-3">
       <%= render partial:'shared/roads/roads', locals: { roads: @searches, title: 'Seaech results'} %>
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-lg-4 pt-3">
       <%= render partial: 'shared/roads/map', locals: { roads: @searches } %>
     </div>
   <% else %>
-    <div class="col text-center">
+    <div class="col text-center pt-3">
       <p>申し訳ございません。検索結果はありませんでした。</p>
       <p><%= link_to "一覧に戻る", roads_path, class:"btn btn-secondary" %></p>
     </div>
