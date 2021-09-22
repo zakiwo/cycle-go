@@ -3,8 +3,8 @@
 </div>
 
 <div class="row my-3">
-  <div class="col-11 col-lg-2 m-4 side-bar border border-dark rounded">
-    <%= render 'layouts/sidebar' %>
+  <div class="col-11 col-lg-2 m side-bar border border-dark rounded">
+    <%= render partial: 'layouts/sidebar', locals: { roads: @messages } %>
   </div>
 
     <div class="col-lg-5">

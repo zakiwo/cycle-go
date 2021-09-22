@@ -17,6 +17,7 @@ class Public::CheckPointCommentsController < ApplicationController
   end
 
   private
+
   def check_point_comment_params
     params.require(:check_point_comment).permit(:body)
   end

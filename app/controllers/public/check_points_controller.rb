@@ -5,6 +5,7 @@ class Public::CheckPointsController < ApplicationController
     @road = Road.find(params[:road_id])
     @check_point = CheckPoint.find(params[:id])
     @comment = CheckPointComment.new
+    @messages = Road.all.limit(3)
   end
 
   def new
@@ -39,9 +40,19 @@ class Public::CheckPointsController < ApplicationController
       render :edit
     end
   end
-  
+
   private
+
   def check_point_params
-    params.require(:check_point).permit(:name, :introduction, :latitude, :longitude, :category, :image)
+    params.require(
+      :check_point
+    ).permit(
+      :name,
+      :introduction,
+      :latitude,
+      :longitude,
+      :category,
+      :image
+    )
   end
 end

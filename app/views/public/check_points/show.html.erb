@@ -11,7 +11,7 @@
 
 <div class="row">
   <div class="col-lg-2 my-3 side-bar border border-dark rounded">
-    <%= render 'layouts/sidebar' %>
+    <%= render partial: 'layouts/sidebar', locals: { roads: @messages } %>
   </div>
 
   <div class="col-lg-5">

@@ -52,6 +52,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop-airbnb'
 end
 
 group :test do
@@ -75,30 +76,26 @@ gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 
-#ページの切り替え
+# ページの切り替え
 gem 'kaminari'
 
 gem 'faker'
 gem 'gimei'
 
-#日本語化対応させる
+# 日本語化対応させる
 gem "rails-i18n"
-#enumを_i18nで呼び出し
+# enumを_i18nで呼び出し
 gem 'enum_help'
 
 gem 'chart-js-rails', '~> 0.1.4'
 
-#画像プロセッサ
+# 画像プロセッサ
 gem 'image_processing', '~> 1.2'
-#画像サイズ調整
+# 画像サイズ調整
 gem 'mini_magick', '~> 4.8'
 
-#環境変数を.envファイルに保存
+# 環境変数を.envファイルに保存
 gem 'dotenv-rails'
 
-#閲覧数
+# 閲覧数
 gem 'impressionist', '~>1.6.1'
-
-
-
-

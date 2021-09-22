@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe CheckPoint, type: :model do
   before do
-    road = create(:road)
+    create(:road)
   end
+
   it "名前、説明、緯度、経度、カテゴリーがある場合、有効である" do
     check_point = create(:check_point)
     expect(check_point).to be_valid
@@ -16,9 +17,9 @@ RSpec.describe CheckPoint, type: :model do
       introduction: 'サイクリングロードの中程にあり、休憩できる',
       latitude: 34.8175348985952,
       longitude: 135.645234625907,
-      )
-      check_point.valid?
-      expect(check_point.errors[:name]).to include("名前を入力してください。")
+    )
+    check_point.valid?
+    expect(check_point.errors[:name]).to include("名前を入力してください。")
   end
 
   it '説明がない場合、無効になる' do
@@ -27,9 +28,9 @@ RSpec.describe CheckPoint, type: :model do
       introduction: '',
       latitude: 34.8175348985952,
       longitude: 135.645234625907,
-      )
-      check_point.valid?
-      expect(check_point.errors[:introduction]).to include("説明を入力してください。")
+    )
+    check_point.valid?
+    expect(check_point.errors[:introduction]).to include("説明を入力してください。")
   end
 
   it '経度がない場合、無効になる' do
@@ -38,9 +39,9 @@ RSpec.describe CheckPoint, type: :model do
       introduction: 'サイクリングロードの中程にあり、休憩できる',
       latitude: '',
       longitude: 135.645234625907,
-      )
-      check_point.valid?
-      expect(check_point.errors[:latitude]).to include("地点の緯度を入力してください。")
+    )
+    check_point.valid?
+    expect(check_point.errors[:latitude]).to include("地点の緯度を入力してください。")
   end
 
   it '緯度がない場合、無効になる' do
@@ -49,9 +50,9 @@ RSpec.describe CheckPoint, type: :model do
       introduction: 'サイクリングロードの中程にあり、休憩できる',
       latitude: 34.8175348985952,
       longitude: '',
-      )
-      check_point.valid?
-      expect(check_point.errors[:longitude]).to include("地点の経度を入力してください。")
+    )
+    check_point.valid?
+    expect(check_point.errors[:longitude]).to include("地点の経度を入力してください。")
   end
 
   it "カテゴリーのenumが正しく日本語化されている" do
