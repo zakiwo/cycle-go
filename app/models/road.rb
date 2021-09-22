@@ -31,7 +31,6 @@ class Road < ApplicationRecord
     Chugoku: 5,
     Shikoku: 6,
     Kyusyu: 7,
-    
   }
 
   def favorited_by?(user)
