@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col">
+    　<h2><%= @check_point.name %>のコメント一覧</h2>
+    <table class="table">
+      <tbody>
+        <% @check_point.comments.each do |comment| %>
+        <tr>
+          <td><%= comment.user.nick_name %>さん</td>
+          <td><%= comment.body %></td>
+          <td><%= link_to "削除する", admin_road_check_point_check_point_comment_path(
+                @check_point.road, @check_point, comment
+              ), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

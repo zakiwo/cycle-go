@@ -2,15 +2,44 @@ require 'rails_helper'
 
 RSpec.feature 'ログイン後の操作' do
   background do
-    User.create!(first_name: '太郎', last_name: '山田', nick_name: '山ちゃん', email: 'foo@example.com', password: 'taroyamada', introduction: '山田です。よろしくお願いします。' )
-    Road.create!(user_id: 1, name: '淀川サイクリングロード', introduction: "淀川沿いに、大阪の中心から京都まで行くルート。", start_latitude: 34.72182943880068, start_longitude: 135.5171911744655, goal_latitude: 34.89057364482206, goal_longitude: 135.70140959744964, distance: 27, elevation_gain: 65, difficulty: "normal", is_editable: nil, area:4)
-    CheckPoint.create!(user_id: 1, road_id: 1, name: '関西医科大学', introduction: '関西医科大学の裏側', latitude: 34.81753489859529, longitude: 135.64523462590745, category: 1)
-    #ログイン操作
+    User.create!(
+      first_name: '太郎',
+      last_name: '山田',
+      nick_name: '山ちゃん',
+      email: 'foo@example.com',
+      password: 'taroyamada',
+      introduction: '山田です。よろしくお願いします。'
+    )
+
+    Road.create!(
+      user_id: 1,
+      name: '淀川サイクリングロード',
+      introduction: "淀川沿いに、大阪の中心から京都まで行くルート。",
+      start_latitude: 34.72182943880068,
+      start_longitude: 135.5171911744655,
+      goal_latitude: 34.89057364482206,
+      goal_longitude: 135.70140959744964,
+      distance: 27,
+      elevation_gain: 65,
+      difficulty: "normal",
+      is_editable: nil,
+      area: 4
+    )
+    CheckPoint.create!(
+      user_id: 1,
+      road_id: 1,
+      name: '関西医科大学',
+      introduction: '関西医科大学の裏側',
+      latitude: 34.81753489859529,
+      longitude: 135.64523462590745,
+      category: 1
+    )
+    # ログイン操作
     visit new_user_session_path
     fill_in 'user_email', with: 'foo@example.com'
     fill_in 'user_password', with: 'taroyamada'
     click_on 'Log in'
-    #ロード一覧画面にいる
+    # ロード一覧画面にいる
   end
   scenario 'ログインする' do
     expect(page).to have_content 'ログインしました。'
@@ -37,7 +66,7 @@ RSpec.feature 'ログイン後の操作' do
 
   scenario '新しいサイクリングロードを登録する' do
     click_on '新規ロード作成'
-    fill_in 'road_name',  with: '六甲山登頂（逆瀬川ルート)'
+    fill_in 'road_name', with: '六甲山登頂（逆瀬川ルート)'
     fill_in 'road_introduction', with: ' "阪急逆瀬川から六甲山を登り、山頂を目指すルート'
     select '近畿', from: 'road_area'
     fill_in 'road_start_latitude', with: 34.797288879018076
@@ -52,10 +81,12 @@ RSpec.feature 'ログイン後の操作' do
     expect(page).to have_content '六甲山登頂（逆瀬川ルート)'
   end
 
-  #js = trueにすると、下記エラー
+  # js = trueにすると、下記エラー
   # Failure/Error: visit new_user_session_path
   # Selenium::WebDriver::Error::WebDriverError:
-  # Could not find Firefox binary (os=linux). Make sure Firefox is installed or set the path manually with Selenium::WebDriver::Firefox::Binary.path=
+  #   Could not find Firefox binary (os=linux).
+  #   Make sure Firefox is installed or set the path manually
+  #   with Selenium::WebDriver::Firefox::Binary.path=
 
   xscenario 'ロードにコメントする', js: true do
     click_on '淀川サイクリングロード'
@@ -82,7 +113,7 @@ RSpec.feature 'ログイン後の操作' do
   scenario 'チェックポイントの詳細に遷移する' do
     click_on '淀川サイクリングロード'
     click_on '関西医科大学'
-    expect(current_path).to eq road_check_point_path(1,1)
+    expect(current_path).to eq road_check_point_path(1, 1)
   end
 
   scenario 'チェックポイントを編集する' do
@@ -94,7 +125,7 @@ RSpec.feature 'ログイン後の操作' do
     expect(page).to have_content 'チェックポイントを更新しました'
   end
 
-  #JSコメント
+  # JSコメント
   xscenario 'チェックポイントにコメントする', js: true do
     click_on '淀川サイクリングロード'
     click_on '関西医科大学'

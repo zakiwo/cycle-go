@@ -9,6 +9,7 @@ module ErrorHandlers
   end
 
   private
+
   def rescure500(e)
     render "errors/internal_server_error", status: 500
   end
@@ -21,5 +22,4 @@ module ErrorHandlers
   def rescure404(e)
     render "errors/not_found", status: 404
   end
-
 end

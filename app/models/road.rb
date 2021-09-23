@@ -10,7 +10,7 @@ class Road < ApplicationRecord
   validates :difficulty, presence: true
   validates :area, presence: true
 
-  #ActiveStorageを使用
+  # ActiveStorageを使用するための記述
   has_one_attached :image
 
   has_many :check_points
@@ -18,16 +18,22 @@ class Road < ApplicationRecord
   has_many :favorite_users, through: :favorites, source: :user
   has_many :comments, class_name: "RoadComment", dependent: :destroy
 
-   #閲覧数
+  # 閲覧数を使用するための記述
   is_impressionable
 
-
-
   enum difficulty: { easy: 0, normal: 1, hard: 2 }
-  enum area: { Hokkaido:0, Tohoku:1, Kanto:2, Chubu:3, Kinki:4, Chugoku:5, Shikoku:6, Kyusyu:7 }
+  enum area: {
+    Hokkaido: 0,
+    Tohoku: 1,
+    Kanto: 2,
+    Chubu: 3,
+    Kinki: 4,
+    Chugoku: 5,
+    Shikoku: 6,
+    Kyusyu: 7,
+  }
 
   def favorited_by?(user)
-    self.favorites.where(user_id: user.id).exists?
+    favorites.where(user_id: user.id).exists?
   end
-
 end
