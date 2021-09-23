@@ -16,9 +16,9 @@ class User < ApplicationRecord
 
   def has_already_comment?(model)
     if model.class == Road
-      self.road_comments.where(road_id: model.id).exists?
+      road_comments.where(road_id: model.id).exists?
     elsif model.class == CheckPoint
-      self.check_point_comments.where(check_point_id: model.id).exists?
+      check_point_comments.where(check_point_id: model.id).exists?
     end
   end
 end

@@ -18,3 +18,23 @@
 //= require turbolinks
 //= require_tree .
 
+$(document).on('turbolinks:load', function () { // このコードを追加する
+  $(function () {
+    $('.js-text_field').on('keyup', function () {
+      var word = $.trim($(this).val());
+      $.ajax({
+        type: 'GET',
+        url: '/incremental_search',
+        data: { word: word }, //("title=" + title),
+        dataType: 'json'
+      })
+      .done(function (data) {
+        console.log(data);
+        $('.js-messages li').remove();
+        $(data).each(function (i, message) {
+          $('.js-messages').append(`<li class="message"><a data-turbolinks="false", href="/roads/${message.id}">${message.name}</a></li>`);
+        });
+      })
+    });
+  });
+}); // このコードを追加する

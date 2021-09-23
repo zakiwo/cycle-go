@@ -15,6 +15,7 @@ class Public::RoadCommentsController < ApplicationController
   end
 
   private
+
   def road_comment_params
     params.require(:road_comment).permit(:body)
   end

@@ -1,6 +1,6 @@
 class Public::RoadFavoritesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     @road = Road.find(params[:road_id])
     current_user.road_favorites.create(road_id: @road.id)
