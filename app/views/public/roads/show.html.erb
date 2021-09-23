@@ -10,15 +10,25 @@
     <div class="col-lg-5">
       <h2 class="font-weight-bold">
         <i class="fas fa-bicycle"></i> <%= @road.name %>
-        <div class="favorite-btn-<%= @road.id %>"><%= render 'public/roads/favorites', road: @road %></div>
+        <div class="favorite-btn-<%= @road.id %>">
+          <%= render 'public/roads/favorites', road: @road %>
+        </div>
       </h2>
       <% if @road.image.attached? %>
-        <%= image_tag @road.image.variant(combine_options:{gravity: :center, resize:"250x200^", crop:"250x200+0+0"}), class:"rounded w-100" %>
+        <%= image_tag @road.image.variant(
+          combine_options:{gravity: :center, resize:"250x200^", crop:"250x200+0+0"}
+        ), class:"rounded w-100" %>
       <% end %>
       <p class><%= @road.introduction %></p>
-      <p class="road-info"> <i class="fas fa-road"></i> 総距離：<%= @road.distance %>km</p>
-      <p class="road-info"><i class="fas fa-mountain"></i>獲得標高：<%= @road.elevation_gain %>m</p>
-      <p class="road-info"><i class="fas fa-gamepad"></i> 難易度：<%= @road.difficulty_i18n %></p>
+      <p class="road-info">
+        <i class="fas fa-road"></i> 総距離：<%= @road.distance %>km
+      </p>
+      <p class="road-info">
+        <i class="fas fa-mountain"></i>獲得標高：<%= @road.elevation_gain %>m
+      </p>
+      <p class="road-info">
+        <i class="fas fa-gamepad"></i> 難易度：<%= @road.difficulty_i18n %>
+      </p>
       <p>
         <% if user_signed_in? && current_user.id == @road.user_id %>
           <%= link_to "チェックポイントを登録", new_road_check_point_path(@road), class:"btn btn-primary" %>
@@ -94,10 +104,22 @@
   <h2><i class="fas fa-monument"></i> Check Points</h2>
   <table class="table-light table-bordered text-center col-md-6 pl-3">
     <tr>
-      <td><%= link_to "全て表示(#{ @road.check_points.count} )", sort_check_point_path(category: "all"), class:"pr-2", remote: true %></td>
-      <td><%= link_to "注意箇所！(#{ @road.check_points.where(category: "cautionary").count })", sort_check_point_path(category: "cautionary"), class:"pr-2", remote: true %></td>
-      <td><%= link_to "景色がいい！(#{ @road.check_points.where(category: "scenic").count })", sort_check_point_path(category: "scenic"), class:"pr-2", remote: true%></td>
-      <td><%= link_to "休憩できる！(#{ @road.check_points.where(category: "restful").count })", sort_check_point_path(category: "restful"), remote: true%></td>
+      <td>
+        <%= link_to "全て表示(#{ @road.check_points.count} )",
+          sort_check_point_path(category: "all"), class:"pr-2", remote: true %>
+      </td>
+      <td>
+        <%= link_to "注意箇所！(#{ @road.check_points.where(category: "cautionary").count })",
+          sort_check_point_path(category: "cautionary"), class:"pr-2", remote: true %>
+      </td>
+      <td>
+        <%= link_to "景色がいい！(#{ @road.check_points.where(category: "scenic").count })",
+          sort_check_point_path(category: "scenic"), class:"pr-2", remote: true%>
+      </td>
+      <td>
+        <%= link_to "休憩できる！(#{ @road.check_points.where(category: "restful").count })",
+          sort_check_point_path(category: "restful"), remote: true%>
+      </td>
     </tr>
   </table>
 </div>
