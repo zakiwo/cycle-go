@@ -1,6 +1,10 @@
 class Admin::CheckPointsController < ApplicationController
   before_action :authenticate_admin!
 
+  def show
+    @check_point = CheckPoint.find(params[:id])
+  end
+
   def edit
     @road = Road.find(params[:road_id])
     @check_point = CheckPoint.find(params[:id])

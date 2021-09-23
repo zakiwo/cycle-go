@@ -14,6 +14,7 @@
             <h3 class="title"><%= link_to road.name, admin_road_path(road), class:"bold" %></h3>
             <p><%= road.introduction %></p>
           </td>
+          <td>コメント <%= road.comments.count %>件</td>
           <td><%= link_to "編集する", edit_admin_road_path(road), class:"btn btn-success" %></td>
           <td><%= link_to "削除する", admin_road_path(road), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger" %></td>
         </tr>

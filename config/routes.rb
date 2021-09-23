@@ -14,7 +14,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :roads, except: [:new, :create] do
-      resources :check_points, only: [:edit, :update, :destroy]
+      resources :check_points, only: [:show, :edit, :update, :destroy] do
+        resources :check_point_comments, only: [:destroy]
+      end
+      resources :road_comments, only: [:destroy]
     end
     resources :users, except: [:new, :create]
   end
