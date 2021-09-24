@@ -14,7 +14,8 @@
       <td>
         <%= comment.body %>(<%= comment.user.nick_name %>さん)
         <% if user_signed_in? && comment.user_id == current_user.id %>
-         <%= link_to "削除する", road_road_comment_path(model, comment), method: :delete, remote: true, class:"btn btn-danger ml-3" %>
+         <%= link_to "削除する", road_road_comment_path(model, comment), method: :delete, remote: true,
+           class:"btn btn-danger ml-3" %>
         <% end %>
       </td>
     </tr>

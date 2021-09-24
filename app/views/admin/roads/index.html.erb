@@ -6,7 +6,11 @@
         <% @roads.each do |road| %>
         <tr>
         <% if road.image.attached? %>
-          <td><%= image_tag road.image.variant(combine_options:{gravity: :center, resize:"150x100^", crop:"150x100+0+0"}), class:"rounded" %></td>
+          <td>
+            <%= image_tag road.image.variant(
+              combine_options:{gravity: :center, resize:"150x100^", crop:"150x100+0+0"}
+            ), class:"rounded" %>
+          </td>
         <% else %>
           <td></td>
         <% end %>
@@ -15,8 +19,14 @@
             <p><%= road.introduction %></p>
           </td>
           <td>コメント <%= road.comments.count %>件</td>
-          <td><%= link_to "編集する", edit_admin_road_path(road), class:"btn btn-success" %></td>
-          <td><%= link_to "削除する", admin_road_path(road), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger" %></td>
+          <td>
+            <%= link_to "編集する", edit_admin_road_path(road),
+              class:"btn btn-success" %>
+          </td>
+          <td>
+            <%= link_to "削除する", admin_road_path(road), method: :delete, data: { confirm: "本当に削除しますか？" },
+              class:"btn btn-danger" %>
+          </td>
         </tr>
         <% end %>
       </tbody>
