@@ -10,7 +10,7 @@
 </div>
 
 <div class="row">
-  <div class="col-lg-2 my-3 side-bar border border-dark rounded">
+  <div class="col-lg-2 m-2">
     <%= render partial: 'layouts/sidebar', locals: { roads: @messages } %>
   </div>
 
@@ -20,7 +20,7 @@
       <%= image_tag @check_point.image.variant(combine_options:{gravity: :center, resize:"250x200^", crop:"250x200+0+0"}), class:"w-75" %>
     <% end %>
   </div>
-  <div class="col-lg-5">
+  <div class="col-lg-4">
     <h2><i class="fas fa-map-marker-alt"></i> Position</h2>
     <div id='point'></div>
 
