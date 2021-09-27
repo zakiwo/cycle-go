@@ -3,7 +3,7 @@ class Public::WaypointsController < ApplicationController
 
   def index
     @road = Road.find(params[:road_id])
-    @waypoint = Waypoint.new
+    @new_waypoint = Waypoint.new
     @waypoints = @road.waypoints
   end
 
@@ -22,7 +22,7 @@ class Public::WaypointsController < ApplicationController
       flash[:notice] = '新しい経由地点の登録が完了しました'
       redirect_to road_path(@road)
     else
-      render :new
+      render :index
     end
   end
 
