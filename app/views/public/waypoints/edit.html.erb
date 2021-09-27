@@ -1,0 +1,33 @@
+<div class="row">
+  <%= render 'layouts/error_messages', model: @waypoint %>
+</div>
+
+<div class="row text-center">
+  <h2 class="my-5">経由地点の編集</h2>
+</div>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3 text-center">
+    <%= form_with model: @waypoint, url: road_waypoint_path(@road, @waypoint), local:true do |f| %>
+      <div class="form mb-4">
+        <%= f.label :point_no, "経由順番" %><br/>
+        <%= f.text_field :point_no, class:"waypoint_no",size:30 %>
+      </div>
+      <div class="form mb-4">
+        <%= f.label :name, "経由地名" %><br/>
+        <%= f.text_field :name, class:"waypoint_name",size:30 %>
+      </div>
+      <div class="form mb-4">
+        <%= f.label :latitude, "緯度" %><br/>
+        <%= f.text_field :latitude, class:"waypoint-latitude", size:30 %>
+      </div>
+      <div class="form mb-4">
+        <%= f.label :longitude, "経度" %><br/>
+        <%= f.text_field :longitude, class:"waypoint-longitude", size:30 %>
+      </div>
+      <div class="actions mb-4 mt-3">
+        <%= f.submit "経由地を編集", class:"btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -49,15 +49,6 @@
       <%= f.radio_button :difficulty, "hard" %>
       <%= f.label :difficulty, Road.difficulties_i18n[:hard] %>
     </div>
-    <%= f.fields_for @waypoint do |i| %>
-    <div class="form mb-4">
-      <%= i.label :latitude, "経由地点の経度" %><br/>
-      <%= i.text_field :latitude,class:"latitude" ,size:40 %>
-    </div>
-    <div class="form mb-4">
-      <%= i.label :longitude, "経由地点の緯度" %><br/>
-      <%= i.text_field :longitude, class:"longitude" ,size:40 %>
-    </div>
 
     <div class="actions mb-4 mt-3">
       <%= f.submit button_name, class:"btn btn-primary" %>

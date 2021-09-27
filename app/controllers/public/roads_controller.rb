@@ -16,13 +16,11 @@ class Public::RoadsController < ApplicationController
 
   def new
     @road = Road.new
-    @waypoint = Waypoint.new
   end
 
   def create
     @road = Road.new(road_params)
     @road.user_id = current_user.id
-    @waypoint = Waypoint.new(waypoint_params[:waypoint])
     if @road.save
       flash[:notice] = '新しいサイクリングロードの登録が完了しました'
       redirect_to road_path(@road)
@@ -33,7 +31,6 @@ class Public::RoadsController < ApplicationController
 
   def edit
     @road = Road.find(params[:id])
-    @waypoint = Waypoint.new
   end
 
   def update
@@ -103,10 +100,5 @@ class Public::RoadsController < ApplicationController
       :image,
       :area
     )
-  end
-
-  def waypoint_params
-    params.require(:road).permit(
-      waypoint[:latitude, :longitude])
   end
 end

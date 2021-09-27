@@ -11,7 +11,7 @@
           <%= f.text_field :word, class:"form-control js-text_field", placeholder:"キーワードで検索", size:38 %>
           <%= f.hidden_field :category, value: "road" %>
         <% end %>
-        <!--インクルメンタルサーチ用-->
+        <!--インクルメンタルサーチで変化-->
         <ul class="js-messages">
           <%= render partial: 'public/roads/search', locals: { roads: roads }  %>
         </ul>
@@ -29,7 +29,10 @@
       <div class="accordion-body">
         <ul class="list-group text-center">
           <% (0..7).each do |n| %>
-          <li class="list-group-item list-group-item-light"><%= link_to Road.areas_i18n[:"#{Road.areas.keys[n]}"], search_path(word: n, category: "area"),  data: {"turbolinks" => false}  %></li>
+          <li class="list-group-item list-group-item-light">
+            <%= link_to Road.areas_i18n[:"#{Road.areas.keys[n]}"], search_path(word: n, category: "area"),  data: {"turbolinks" => false}  %>
+            ( <%= Road.where(area: n).count %> )
+          </li>
           <% end %>
         </ul>
       </div>

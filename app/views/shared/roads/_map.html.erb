@@ -19,7 +19,7 @@ function initMap(){
     center: {lat: <%= roads.first.start_latitude %>, lng: <%= roads.first.start_longitude %> },
     zoom: 10,
   });
-
+  
   <% roads.each do |road| %>
   road_marker = new google.maps.Marker({
     position:  {lat: <%= road.start_latitude %> , lng: <%= road.start_longitude %>},

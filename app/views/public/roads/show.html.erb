@@ -40,7 +40,14 @@
   </div>
 
   <div class="col-lg-4 mt-sm-3 mt-md-0">
-    <h2 class="mb-5"><i class="fas fa-map"></i> Road Map</h2>
+    <h2 class="mb-5">
+      <i class="fas fa-map"></i>
+       Road Map
+      <span>
+        <% if user_signed_in? && current_user.id == @road.user_id %>
+          <%= link_to "経由地を追加・編集", road_waypoints_path(@road), class:"btn btn-info" %></span>
+        <% end %>
+    </h2>
     <div id='point_map'></div>
    <style>
       #point_map {
@@ -53,6 +60,8 @@
     let point_map
 
     // グーグルマップを表示
+    // Google Maps Platformの公式ドキュメント
+    // https://developers.google.com/maps/documentation/javascript/overview?hl=ja
     function initMap() {
       const directionsRenderer = new google.maps.DirectionsRenderer();
       const directionsService = new google.maps.DirectionsService();
@@ -70,7 +79,7 @@
           position:  {lat: <%= point.latitude %> , lng: <%= point.longitude %>},
           map: point_map
         });
-
+        
         infowindow = new google.maps.InfoWindow({
           content: '<%= link_to point.name, road_check_point_path(@road, point) %>'
         });

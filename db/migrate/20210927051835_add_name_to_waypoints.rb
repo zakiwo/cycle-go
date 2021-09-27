@@ -1,0 +1,5 @@
+class AddNameToWaypoints < ActiveRecord::Migration[5.2]
+  def change
+    add_column :waypoints, :name, :string
+  end
+end
