@@ -17,6 +17,7 @@ class Road < ApplicationRecord
   has_many :favorites, class_name: "RoadFavorite", dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
   has_many :comments, class_name: "RoadComment", dependent: :destroy
+  has_many :waypoints
 
   # 閲覧数を使用するための記述
   is_impressionable

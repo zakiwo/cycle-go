@@ -52,6 +52,7 @@
   <script>
     let point_map
 
+    // グーグルマップを表示
     function initMap() {
       const directionsRenderer = new google.maps.DirectionsRenderer();
       const directionsService = new google.maps.DirectionsService();
@@ -77,12 +78,22 @@
       <% end %>
     }
 
+    // グーグルマップの経路を表示
     function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+      // 経由地の表示
+      const waypts = [
+        <% @road.waypoints.order(:point_no).each do |waypoint| %>
+          { location: new google.maps.LatLng(<%= waypoint.latitude %>, <%= waypoint.longitude %>) },
+        <% end %>
+        ];
+
       directionsService
         .route({
-          origin: { lat: <%= @road.start_latitude %>, lng:<%= @road.start_longitude %> },
-          destination: { lat: <%= @road.goal_latitude %>, lng:<%= @road.goal_longitude %> },
-          travelMode: google.maps.TravelMode.BICYCLING,
+          origin: { lat: <%= @road.start_latitude %>, lng:<%= @road.start_longitude %> },  //スタート地点
+          destination: { lat: <%= @road.goal_latitude %>, lng:<%= @road.goal_longitude %> },  //ゴール地点
+          waypoints: waypts,  //経由地
+          optimizeWaypoints: true,
+          travelMode: google.maps.TravelMode.BICYCLING,  //自転車でルート検索
         })
         .then((response) => {
           directionsRenderer.setDirections(response);

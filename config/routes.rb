@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       resources :check_points, except: [:index] do
         resources :check_point_comments, only: [:create, :destroy]
       end
+      resources :waypoints, only: [:create, :edit, :destroy]
       resources :road_comments, only: [:create, :destroy]
       resource :road_favorites, only: [:create, :destroy]
     end
