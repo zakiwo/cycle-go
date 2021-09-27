@@ -34,4 +34,9 @@ ja:
       check_point_comment:
         body: コメント
 
+      waypoint:
+        name: 経由地点名
+        latitude: 経由地店の緯度
+        longitude: 経由地店の経度
+
 

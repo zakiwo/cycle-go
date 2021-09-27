@@ -1,8 +1,8 @@
 class CheckPoint < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
-  validates :latitude, presence: true
-  validates :longitude, presence: true
+  validates :latitude, presence: true, numericality: {greater_than_or_equal_to: -180, less_than_or_equal_to: 180}
+  validates :longitude, presence: true, numericality: {greater_than_or_equal_to: -180, less_than_or_equal_to: 180}
   validates :category, presence: true
 
   belongs_to :road

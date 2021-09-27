@@ -1,12 +1,12 @@
 class Road < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
-  validates :start_latitude, presence: true
-  validates :start_longitude, presence: true
-  validates :goal_latitude, presence: true
-  validates :goal_longitude, presence: true
-  validates :distance, presence: true
-  validates :elevation_gain, presence: true
+  validates :start_latitude, presence: true, numericality: {greater_than_or_equal_to: -180, less_than_or_equal_to: 180}
+  validates :start_longitude, presence: true, numericality: {greater_than_or_equal_to: -180, less_than_or_equal_to: 180}
+  validates :goal_latitude, presence: true, numericality: {greater_than_or_equal_to: -180, less_than_or_equal_to: 180}
+  validates :goal_longitude, presence: true, numericality: {greater_than_or_equal_to: -180, less_than_or_equal_to: 180}
+  validates :distance, presence: true, numericality: true
+  validates :elevation_gain, presence: true, numericality: true
   validates :difficulty, presence: true
   validates :area, presence: true
 
@@ -17,6 +17,7 @@ class Road < ApplicationRecord
   has_many :favorites, class_name: "RoadFavorite", dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
   has_many :comments, class_name: "RoadComment", dependent: :destroy
+  has_many :waypoints
 
   # 閲覧数を使用するための記述
   is_impressionable

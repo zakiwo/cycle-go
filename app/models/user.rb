@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :favorite_roads, through: :road_favorites, source: :road
   has_many :road_comments, dependent: :destroy
   has_many :check_point_comments, dependent: :destroy
+  has_many :waypoints, dependent: :destroy
 
   def has_already_comment?(model)
     if model.class == Road

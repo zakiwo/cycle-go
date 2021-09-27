@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  road_id: 1
+  user_id: 1
+  latitude: 1.5
+  longitude: 1.5
+  point_no: 1
+
+two:
+  road_id: 1
+  user_id: 1
+  latitude: 1.5
+  longitude: 1.5
+  point_no: 1
