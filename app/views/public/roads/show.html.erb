@@ -40,7 +40,14 @@
   </div>
 
   <div class="col-lg-4 mt-sm-3 mt-md-0">
-    <h2 class="mb-5"><i class="fas fa-map"></i> Road Map</h2>
+    <h2 class="mb-5">
+      <i class="fas fa-map"></i>
+       Road Map
+      <span>
+        <% if user_signed_in? && current_user.id == @road.user_id %>
+          <%= link_to "経由地を追加・編集", road_waypoints_path(@road), class:"btn btn-info" %></span>
+        <% end %>
+    </h2>
     <div id='point_map'></div>
    <style>
       #point_map {
@@ -52,6 +59,9 @@
   <script>
     let point_map
 
+    // グーグルマップを表示
+    // Google Maps Platformの公式ドキュメント
+    // https://developers.google.com/maps/documentation/javascript/overview?hl=ja
     function initMap() {
       const directionsRenderer = new google.maps.DirectionsRenderer();
       const directionsService = new google.maps.DirectionsService();
@@ -69,7 +79,7 @@
           position:  {lat: <%= point.latitude %> , lng: <%= point.longitude %>},
           map: point_map
         });
-
+        
         infowindow = new google.maps.InfoWindow({
           content: '<%= link_to point.name, road_check_point_path(@road, point) %>'
         });
@@ -77,12 +87,22 @@
       <% end %>
     }
 
+    // グーグルマップの経路を表示
     function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+      // 経由地の表示
+      const waypts = [
+        <% @road.waypoints.order(:point_no).each do |waypoint| %>
+          { location: new google.maps.LatLng(<%= waypoint.latitude %>, <%= waypoint.longitude %>) },
+        <% end %>
+        ];
+
       directionsService
         .route({
-          origin: { lat: <%= @road.start_latitude %>, lng:<%= @road.start_longitude %> },
-          destination: { lat: <%= @road.goal_latitude %>, lng:<%= @road.goal_longitude %> },
-          travelMode: google.maps.TravelMode.BICYCLING,
+          origin: { lat: <%= @road.start_latitude %>, lng:<%= @road.start_longitude %> },  //スタート地点
+          destination: { lat: <%= @road.goal_latitude %>, lng:<%= @road.goal_longitude %> },  //ゴール地点
+          waypoints: waypts,  //経由地
+          optimizeWaypoints: true,
+          travelMode: google.maps.TravelMode.BICYCLING,  //自転車でルート検索
         })
         .then((response) => {
           directionsRenderer.setDirections(response);

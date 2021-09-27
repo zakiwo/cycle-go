@@ -1,0 +1,51 @@
+<div class="row">
+  <%= render 'layouts/error_messages', model: @waypoint %>
+</div>
+
+<div class="row text-center">
+  <h2 class="my-5">経由地点の追加</h2>
+  <p>サイクリングロードが正しく表示されない場合は、経由地点を追加してみてください</p>
+</div>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3 text-center">
+    <%= form_with model: @waypoint, url: road_waypoints_path(@road), local:true do |f| %>
+      <div class="form mb-4">
+        <%= f.label :name, "経由地名" %><br/>
+        <%= f.text_field :name, class:"waypoint_name",size:30 %>
+      </div>
+      <div class="form mb-4">
+        <%= f.label :latitude, "緯度" %><br/>
+        <%= f.text_field :latitude, class:"waypoint-latitude", size:30 %>
+      </div>
+      <div class="form mb-4">
+        <%= f.label :longitude, "経度" %><br/>
+        <%= f.text_field :longitude, class:"waypoint-longitude", size:30 %>
+      </div>
+      <div class="actions mb-4 mt-3">
+        <%= f.submit "経由地を追加", class:"btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row text-center mt-3">
+  <div class="col-md-4 offset-md-4">
+    <h2>経由地点の一覧</h2>
+  </div>
+</div>
+
+<div class="row pt-3 offset-lg-3 mb-3">
+  <% @road.waypoints.order(:point_no).each do |waypoint| %>
+  <div class="col-12 col-lg-4 mr-3 card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= waypoint.point_no %>. <%= waypoint.name %></h5>
+      <p class="card-text">緯度：<%= waypoint.latitude %></p>
+      <p class="card-text">経度：<%= waypoint.longitude %></p>
+      <a class="card-link"><%= link_to "編集", edit_road_waypoint_path(@road, waypoint), class:"btn btn-success" %></a>
+      <a class="card-link"><%= link_to "削除", road_waypoint_path(@road, waypoint), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></a>
+    </div>
+  </div>
+  <% end %>
+</div>
+

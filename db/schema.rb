@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_19_005124) do
+ActiveRecord::Schema.define(version: 2021_09_27_051835) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -139,6 +139,17 @@ ActiveRecord::Schema.define(version: 2021_09_19_005124) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "waypoints", force: :cascade do |t|
+    t.integer "road_id"
+    t.integer "user_id"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "point_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
   end
 
 end
