@@ -3,7 +3,7 @@ class Public::WaypointsController < ApplicationController
 
   def index
     @road = Road.find(params[:road_id])
-    @new_waypoint = Waypoint.new
+    @waypoint = Waypoint.new
     @waypoints = @road.waypoints
   end
 
