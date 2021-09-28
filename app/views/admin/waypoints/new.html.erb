@@ -3,11 +3,11 @@
 </div>
 
 <div class="row text-center">
-  <h2 class="my-5">経由地点の編集</h2>
+  <h2 class="my-5">経由地点の登録</h2>
 </div>
 
 <div class="row">
   <div class="col-md-6 offset-md-3 text-center">
-    <%= render partial:'public/waypoints/waypoint_form', locals: { waypoint: @waypoint, url: road_waypoint_path(@road, @waypoint)} %>
+    <%= render partial:'public/waypoints/waypoint_form', locals: { waypoint: @waypoint, url: admin_road_waypoints_path(@road)} %>
   </div>
 </div>

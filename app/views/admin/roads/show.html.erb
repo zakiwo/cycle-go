@@ -40,3 +40,20 @@
     </table>
   </div>
 </div>
+
+<div class="row">
+  <div class="col">
+    　<h2><%= @road.name %>の経由地点 <%= link_to "新規登録", new_admin_road_waypoint_path(@road), class:"btn btn-info" %></h2>
+    <table class="table">
+      <tbody>
+        <% @road.waypoints.order(:point_no).each do |waypoint| %>
+        <tr>
+          <td><%= waypoint.point_no %>. <%= waypoint.name %></td>
+          <td><%= link_to "編集する", edit_admin_road_waypoint_path(@road, waypoint), class:"btn btn-success" %></td>
+          <td><%= link_to "削除する", admin_road_waypoint_path(@road, waypoint), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
