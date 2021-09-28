@@ -31,7 +31,7 @@ https://cycle-go.net
 
 ## 設計書
 - ER図
-<img width="506" alt="ポートフォリオER図" src="https://user-images.githubusercontent.com/85174354/131640588-75c2ad12-d843-428d-9662-e44e6690d76b.png">
+https://drive.google.com/file/d/1CH3lkLncLHQvLG738-QSC1DQbYHdinzI/view?usp=sharing
 
 - テーブル定義書
 https://docs.google.com/spreadsheets/d/1kOH9lLo1snCBS8blrWnLrVnDXgM4C-prW1M9Q6rXqso/edit?usp=sharing
