@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       resources :check_points, only: [:show, :edit, :update, :destroy] do
         resources :check_point_comments, only: [:destroy]
       end
-      resources :waypoints, except: [:show]
+      resources :waypoints, except: [:index, :show]
       resources :road_comments, only: [:destroy]
     end
     resources :users, except: [:new, :create]

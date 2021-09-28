@@ -10,7 +10,7 @@ class Admin::WaypointsController < ApplicationController
     @road = Road.find(params[:road_id])
     @waypoint = Waypoint.new(waypoint_params)
     @waypoint.road_id = params[:road_id]
-    @waypoint.user_id = current_user.id
+    @waypoint.user_id = @road.user_id
     #経由順番の最後を取得し、プラス1の値を付与
     if last_waypoint = @road.waypoints.order(:point_no).last
       @waypoint.point_no = last_waypoint.point_no + 1
@@ -21,7 +21,7 @@ class Admin::WaypointsController < ApplicationController
       flash[:notice] = '新しい経由地点の登録が完了しました'
       redirect_to admin_road_path(@road)
     else
-      render :index
+      render :new
     end
   end
 
