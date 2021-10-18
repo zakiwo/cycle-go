@@ -35,6 +35,11 @@ https://docs.google.com/spreadsheets/d/1kOH9lLo1snCBS8blrWnLrVnDXgM4C-prW1M9Q6rX
 - アプリケーション詳細設計書 
 https://docs.google.com/spreadsheets/d/1uzMEhRddiKFz8iBCybkXReglTYZconjDlQYpm-lOYow/edit?usp=sharing
 
+- AWSインフラ設計書
+https://docs.google.com/spreadsheets/d/1pVEnYEqQ9KGkvkxDyUZEw2iJVxdq4yefpQ-VaT_41yU/edit?usp=sharing
+- AWS構成図
+https://drive.google.com/file/d/1qHG6ulggv_jxyhJV9mkOa6yo74HLEhVX/view?usp=sharing
+
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/13SvC8ax6w7rXgQwlYXzTDT_aXz9YRKvM_JoqfzA_Zao/edit?usp=sharing
 
